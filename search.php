@@ -1,6 +1,6 @@
 <?php 
 /**
- * Index Template
+ * Search Page Template
  */
 get_header();
 

@@ -1,6 +1,6 @@
 <?php 
 /**
- * Index Template
+ * Single Page Template
  */
 get_header();
 
