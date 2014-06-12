@@ -26,9 +26,10 @@ $option = get_option('miim_theme_options');
 			} ?>
 		</ol>
 		<div class="carousel-inner"><?php
-			while($items->have_posts()):$items->the_post(); ?>
+			while($items->have_posts()):$items->the_post();
+				$image_attributes = wp_get_attachment_image_src( get_the_ID() ); ?>
 				<div class="item <?php if($first){ echo 'active'; $first=false; } ?>">
-					<img src="" alt="<?php the_title(); ?>">
+					<img src="<?php echo $image_attributes[0]; ?>" alt="<?php the_title(); ?>">
 					<div class="carousel-caption"><?php
 						the_title(); ?>
 					</div>

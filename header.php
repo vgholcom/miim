@@ -20,12 +20,39 @@
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<header id="primary-header">
+	<header id="primary-header" class="navbar navbar-default navbar-static-top">
 		<div class="container">
+			<div class="row">
+				<nav id="primary-header-nav" class="navbar-left"><?php 
+					wp_nav_menu(array(
+						'theme_location'=>'primary-menu', 
+						'container'=>'',
+						'menu_class'=>'nav navbar-nav',
+						'menu_id'=>'sub-head-menu',
+						'fallback_cb'=>false,
+						'depth'=>1
+					)); ?>
+				</nav>
+				<section class="pull-right"><?php
+					get_search_form();?>
+				</section>
+			</div>
 		</div>
 	</header>
-	<header id="secondary-header">
+	<header id="secondary-header" class="navbar navbar-default navbar-static-top">
 		<div class="container">
+			<div class="row">
+				<nav id="secondary-header-nav" class="navbar-right"><?php 
+					wp_nav_menu(array(
+						'theme_location'=>'secondary-menu', 
+						'container'=>'',
+						'menu_class'=>'nav navbar-nav',
+						'menu_id'=>'sub-head-menu',
+						'fallback_cb'=>false,
+						'depth'=>1
+					)); ?>
+				</nav>
+			</div>
 		</div>
 	</header>
 	<section id="main-content">

@@ -12,7 +12,7 @@ function miim_scripts_styles() {
 	/* SCRIPTS */
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri().'/js/bootstrap.min.js', array('jquery'));
-	wp_enqueue_script('main-js', get_template_directory_uri().'/js/main.js');
+	wp_enqueue_script('main-js', get_template_directory_uri().'/js/main.js', array('jquery'));
 	
 	/* STYLES */
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css');
@@ -60,7 +60,7 @@ function miim_init() {
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
-		'menu_icon'           => '',
+		'menu_icon'           => 'dashicons-calendar',
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
@@ -88,7 +88,7 @@ function miim_init() {
 		'label'               => __( 'embed' ),
 		'description'         => __( 'Embeds' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'thumbnail' ),
+		'supports'            => array( 'title', 'thumbnail', 'editor' ),
 		'taxonomies'          => array( 'category', 'post_tag', 'gallery' ),
 		'hierarchical'        => false,
 		'public'              => true,
@@ -97,7 +97,7 @@ function miim_init() {
 		'show_in_nav_menus'   => true,
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
-		'menu_icon'           => '',
+		'menu_icon'           => 'dashicons-video-alt2',
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
