@@ -201,8 +201,17 @@ function miim_theme_options() {
 				<div class="inside">
 				    <label for="title"><h4>Title:</h4></label>
 					<input id="title" name="Title" style="width:50%;" value="<?php echo $option['miim_title']; ?>" /><br>
-				    <label for="address"><h4>Address:</h4></label>
-				    <input id="address" name="Address" style="width:50%; " value="<?php echo $option['miim_address']; ?>" /><br>
+				    <h4>Address:</h4></br>
+				    <label for="street1"><h4>Street line 1:</h4></label>
+				    <input id="street1" name="Street1" style="width:50%; " value="<?php echo $option['miim_street1']; ?>" /><br>
+				    <label for="street2"><h4>Street line 2:</h4></label>
+				    <input id="street2" name="Street2" style="width:50%; " value="<?php echo $option['miim_street2']; ?>" /><br>
+				    <label for="city"><h4>City:</h4></label>
+				    <input id="city" name="City" style="width:50%; " value="<?php echo $option['miim_city']; ?>" /><br>
+				    <label for="state"><h4>State:</h4></label>
+				    <input id="state" name="State" style="width:50%; " value="<?php echo $option['miim_state']; ?>" /><br>
+				    <label for="zip"><h4>Zip Code:</h4></label>
+				    <input id="zip" name="Zip" style="width:50%; " value="<?php echo $option['miim_zip']; ?>" /><br>
 				    <label for="phone_number"><h4>Phone Number:</h4></label>
 				    <input id="phone_number" name="phone_Number" style="width:50%;" value="<?php echo $option['miim_phone']; ?>" /><br>
 					<label for="email"><h4>Email:</h4></label>
@@ -256,7 +265,11 @@ function miim_theme_options() {
 					branding: { src: $("#miim-logo-src").attr('src'), id: $("#miim-logo-id").val() },
 					miim_slideshow_gallery :$('#miim_slideshow_gallery option:selected').val(),
 					miim_title:$('#title').val(),
-			    	miim_address:$('#address').val(),
+			    	miim_address:$('#street1').val(),
+			    	miim_address:$('#street2').val(),
+			    	miim_address:$('#city').val(),
+			    	miim_address:$('#state').val(),
+			    	miim_address:$('#zip').val(),
 			    	miim_phone:	$('#phone_number').val(),
 					miim_email:$('#email').val(),
 			    	miim_copyright:$('#copyright').val(),
