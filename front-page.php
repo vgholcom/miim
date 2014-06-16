@@ -20,7 +20,8 @@ $option = get_option('miim_theme_options'); ?>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4"><?php
+		echo miim_twitter_stream($option['tw_username']); ?>
 	</div>
 </div>
 <div class="row">

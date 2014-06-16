@@ -5,7 +5,7 @@
 
 //include 'api/facebook.php';
 //include 'api/instagram.php';
-//include 'api/twitter.php';
+include 'api/twitter.php';
 
 function miim_scripts_styles() {
 	
@@ -16,7 +16,7 @@ function miim_scripts_styles() {
 	
 	/* STYLES */
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css');
-	wp_enqueue_style('global', get_stylesheet_directory_uri(), array('bootstrap-css'));
+	wp_enqueue_style('global', get_stylesheet_directory_uri().'/style.css', array('bootstrap-css'));
 
 }
 
@@ -171,6 +171,31 @@ function miim_theme_options() {
 					<input type="button" id="miim-logo-remove" value="Remove Image">
 				</div>
 			</section>
+			<section id="social-media" class="postbox">
+				<h3>Social Media</h3>
+				<div class="inside">
+				    <h4>Twitter:</h4><?php
+				    echo miim_check_twitter( $option['tw_username'], $option['tw_ck'], $option['tw_cs'], $option['tw_at'], $option['tw_as']); ?>
+				    <label for="tw_username"><h4>Username:</h4></label>
+					<input id="tw_username" name="tw_username" style="width:50%;" value="<?php echo $option['tw_username']; ?>" /><br>
+				    <label for="tw_ck"><h4>Consumer Key:</h4></label>
+					<input id="tw_ck" name="tw_ck" style="width:50%;" value="<?php echo $option['tw_ck']; ?>" /><br>
+				    <label for="tw_cs"><h4>Consumer Secret:</h4></label>
+					<input id="tw_cs" name="tw_cs" style="width:50%;" value="<?php echo $option['tw_cs']; ?>" /><br>
+					<label for="tw_at"><h4>Access Token:</h4></label>
+					<input id="tw_at" name="tw_at" style="width:50%;" value="<?php echo $option['tw_at']; ?>" /><br>
+					<label for="tw_as"><h4>Access Secret:</h4></label>
+					<input id="tw_as" name="tw_as" style="width:50%;" value="<?php echo $option['tw_as']; ?>" /><br>
+					<h4>Facebook:</h4>
+					<label for="fb_username"><h4>Username:</h4></label>
+					<input id="fb_username" name="fb_username" style="width:50%;" value="<?php echo $option['fb_username']; ?>" /><br>
+					<h4>Instagram:</h4></br>
+				    <label for="ig_userid"><h4>User ID:</h4></label>
+					<input id="ig_userid" name="ig_userid" style="width:50%;" value="<?php echo $option['ig_userid']; ?>" /><br>
+					<label for="ig_usertoken"><h4>User Token:</h4></label>
+					<input id="ig_usertoken" name="ig_usertoken" style="width:50%;" value="<?php echo $option['ig_usertoken']; ?>" /><br>
+				</div>
+			</section>
 			<section id="slideshow" class="postbox">
 				<h3>Slideshow Gallery</h3>
 				<div class="inside">
@@ -263,6 +288,14 @@ function miim_theme_options() {
 				action: 'miim_theme_options_ajax_action',
 				miim_theme_options: { 
 					branding: { src: $("#miim-logo-src").attr('src'), id: $("#miim-logo-id").val() },
+					tw_username : $('#tw_username').val(),
+					tw_ck : $('#tw_ck').val(),
+					tw_cs : $('#tw_cs').val(),
+					tw_at : $('#tw_at').val(),
+					tw_as : $('#tw_as').val(),
+					fb_username : $('#fb_username').val(),
+					ig_userid : $('#ig_userid').val(),
+					ig_usertoken : $('#ig_usertoken').val(),
 					miim_slideshow_gallery :$('#miim_slideshow_gallery option:selected').val(),
 					miim_title:$('#title').val(),
 			    	miim_address:$('#street1').val(),
@@ -299,6 +332,7 @@ add_action( 'wp_ajax_miim_theme_options_ajax_action', 'miim_theme_options_ajax_c
 function miim_metabox() {                              
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'page', 'normal', 'high' );
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'post', 'normal', 'high' );
+	add_meta_box( 'miim-events-metabox', 'Events', 'miim_events_metabox', 'events');
 }
 add_action( 'add_meta_boxes', 'miim_metabox' );
 
@@ -328,3 +362,88 @@ function miim_gallery_metabox ( $post ) { ?>
 	</script>
 <?php }
 
+
+/* EVENTS */
+add_filter('manage_edit-miim_events_columns','miim_events_edit_columns');
+add_action('manage_posts_custom_column','miim_events_custom_columns');
+
+function miim_events_edit_columns($columns) {
+	$columns = array(
+		'cb'=>'<input type=\"checkbox\"/>',
+		'miim_col_ev_date'=>'Dates',
+		'miim_col_ev_times'=>'Times',
+		'title'=>'Event'
+	);
+	return $columns;
+}
+
+function miim_events_custom_columns() {
+	global $post;
+	$custom = get_post_custom();
+	switch ($column) {
+		case 'miim_col_ev_date' :
+			$startd = $custom['miim_events_startdate'][0];
+			$endd = $custom['miim_events_enddate'][0];
+			$startdate = date('F j, Y', $startd);
+			$enddate = date('F j, Y'),$endd);
+			echo $startdate .'<br/><em>'.$enddate.'</em>';
+		break;
+		case 'miim_col_ev_times' :
+			$startt = $custom['miim_events_startdate'][0];
+			$endt = $custom['miim_events_enddate'][0];
+			$time_format = get_option('time_format');
+			$starttime = date($time_format, $startt);
+			$endtime = date($time_format, $endt);
+			echo $starttime.'-'.$endtime;
+		break;
+	}
+}
+
+function miim_events_metabox() {
+	global $post;
+	$custom = get_post_custom($post->ID);
+	$meta_sd = $custom['miim_events_startdate'][0];
+	$meta_ed = $custom['miim_events_enddate'][0];
+	$meta_st = $meta_sd; 
+	$meta_et = $meta_et;
+	$date_format = get_option('date_format');
+	$time_format = get_option('time_format');
+	if ($meta_sd == null){ $meta_sd = time(); $meta_ed = $meta_sd; $meta_st = 0; $meta_et = 0; }
+	$clean_sd = date('D, M d, Y', $meta_sd);
+	$clean_ed = date('D, M d, Y', $meta_ed);
+	$clean_st = date($time_format, $meta_st);
+	$clean_et = date($time_format, $meta_et);
+	echo '<input type="hidden" name="miim-events-nonce" id="miim-events-nonce" value="'.wp_create_nonce('miim-events-nonce').'"/>' ?>
+	<div style="border:1px solid #CCCCCC;padding:10px;margin-bottom:10px;">
+		<ul>
+			<li><label>Start Date</label><input name="miim_events_startdate" class="miimdate" value="<?php echo $clean_sd ?>"/></li>
+			<li><label>Start Time</label><input name="miim_events_starttime" value="<?php echo $clean_st ?>"/></li>
+			<li><label>End Date</label><input name="miim_events_enddate" class="miimdate" value="<?php echo $clean_ed ?>"/></li>
+			<li><label>End Time</label><input name="miim_events_endtime" value="<?php echo $clean_et ?>"/></li>
+		</ul>
+	</div><?php
+
+}
+
+add_action('save_post','save_miim_events');
+
+function save_miim_events(){
+	global $post;
+	if (!wp_verify_nonce($_POST['miim-events-nonce'],'miim-events-nonce')) {
+		return $post->ID;
+	}
+	if (!current_user_can('edit_post',$post->ID))
+		return $post->ID;
+	
+	if (!isset($_POST['miim_events_startdate'])):
+		return $post;
+	endif;
+	$updatestartd = strtotime($_POST['miim_events_startdate'].$_POST['miim_events_starttime']);
+	update_post_meta($post->ID, 'miim_events_startdate',$updatestartd);
+
+	if(!isset($_POST['miim_events_enddate'])):
+		return $post;
+	endif;
+	$updateendd = strtotime($_POST['miim_events_enddate'].$_POST['miim_events_endtime']);
+	update_post_meta($post->ID, 'miim_events_enddate',$updateendd);
+}

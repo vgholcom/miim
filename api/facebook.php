@@ -6,6 +6,7 @@
 function miim_check_facebook( $username = null ) {
 	if( !$username ) { return ''; }
 	$user = miim_get_facebook_user($username);
+	var_dump($user);
 	$stream = miim_get_facebook_stream($user->id);
 	switch( count($stream->entries) ) :
 		case 0: 
@@ -53,8 +54,26 @@ function miim_get_facebook_stream( $userid = null ) {
 function miim_facebook_stream($username = null){
 	$user = miim_get_facebook_user($username);
 	$stream = miim_facebook_stream($username);
-	$output = '<section>'
-	/// OUTPUT
-	return $output
+	$output = '<section class="facebook-feed">';
+    $output .= '<h3>'.$username.'</h3>';
+    // check for page or profile
+    if ( $user->category ) {
+        $output .= '<iframe src="//www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2F'.$username.'&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:35px;" allowTransparency="true"></iframe>';
+    } else {
+        $output .= '<iframe src="//www.facebook.com/plugins/follow.php?href=http%3A%2F%2Fwww.facebook.com%2F'.$username.'&amp;width&amp;height=35&amp;colorscheme=light&amp;layout=standard&amp;show_faces=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:35px;" allowTransparency="true"></iframe>';
+    }
+    foreach( $stream->entries as $entry ) : $i++;
+        if ($entry->title!=' ') :
+            $output .= '<article class="sf-facebook-entry" id="'.$entry->id.'">';
+                $output .= $icon;
+                $output .= '<span class="sf-facebook-published">'.date('M d, Y', strtotime($entry->published)).'</span>';
+                $output .= '<h4><a href="'.$entry->alternate.'" target="_blank">'.$entry->title.'</a></h4>';
+            $output .= '</article>';
+        endif;
+        if( $i == 4 ) { break; }
+    endforeach;
+	$output .= '</section>';
+	// return output
+    return $output;
 }
 ?>

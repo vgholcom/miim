@@ -10,13 +10,13 @@ function miim_check_twitter( $username=false, $consumer_key=false, $consumer_sec
 
 function miim_get_twitter_stream($username=false){
 	if(!$username){ return false; }
-	$twitter = get_option('miim_twitter_feed');
+	$twitter = get_option('miim_theme_options');
 	require_once('tmhOAuth.php'); require_once('tmhUtilities.php');
 	$tmhOAuth = new tmhOAuth( array(
-		'consumer_key' => $twitter['consumer_key'],
-		'consumer_secret' => $twitter['consumer_secret'],
-		'user_token' => $twitter['access_token'],
-		'user_secret' => $twitter['access_secret'],
+		'consumer_key' => $twitter['tw_ck'],
+		'consumer_secret' => $twitter['tw_cs'],
+		'user_token' => $twitter['tw_at'],
+		'user_secret' => $twitter['tw_as'],
 		'curl_ssl_verifypeer' => false
 	));
 	$code = $tmhOAuth->request('GET', $tmhOAuth->url('1.1/statuses/user_timeline'), array(
@@ -24,17 +24,33 @@ function miim_get_twitter_stream($username=false){
 		'count'=>20
 	));
 	$response = $tmhOAuth->response['response'];
+
 	return json_decode($response, true);
 }
 
 function miim_twitter_stream($username=null) {
-	$stream = miim_get_twitter_stream($username);
-	// OUTPUT
-	return $output
+    $stream = miim_get_twitter_stream($username); $i=0;
+    $output = '<section class="twitter-feed">';
+    $output .= '<h3>'.$username.'</h3>';
+    for($i = 0; $i < 4 ; $i++) {
+        $output .= '<article class="twitter-entry" id="twitter-'.$i.'">';
+        $output .= '<p>'.miim_twitterify($stream[$i]['text']).'</p>';
+        $output .= ' <a href="https://twitter.com/'.$username.'/status/'.$stream[$i]['id_str'].'">View Now</a></article>';
+    }        
+    $output .= '</section>';
+	// return output
+    return $output;
 }
 
 function miim_twitterify($ret) {
-
+    //Formats and links links
+    $ret = preg_replace('#(^|[\n ])([\w]+?://[\w]+[^ \"\n\r\t< ]*)#', '\\1<a href="\\2" target=\"_blank\">\\2</a>', $ret);
+    $ret = preg_replace('#(^|[\n ])((www|ftp)\.[^ \"\t\n\r< ]*)#', '\\1<a href="http://\\2" target=\"_blank\">\\2</a>', $ret);
+    //Links Twitter Handles
+    $ret = preg_replace('/@(\w+)/', '<a href="http://www.twitter.com/\\1" target=\"_blank\">@\\1</a>', $ret);
+    //Links Hashtags
+    $ret = preg_replace('/#(\w+)/', '<a href="http://twitter.com/search?q=\\1&src=hash" >#\\1</a>', $ret);
+    return $ret;
 }
 
 function miim_twitter_time($a) {
