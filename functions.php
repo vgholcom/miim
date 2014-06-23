@@ -6,6 +6,8 @@
 //include 'api/facebook.php';
 //include 'api/instagram.php';
 include 'api/twitter.php';
+include 'admin/events.php';
+
 
 function miim_scripts_styles() {
 	
@@ -31,43 +33,6 @@ function miim_admin_init() {
 add_action('admin_enqueue_scripts','miim_admin_init');
 
 function miim_init() {
-
-	// Register Event Custom Post Type
-	$labels = array(
-		'name'                => _x( 'Events', 'Post Type General Name' ),
-		'singular_name'       => _x( 'Event', 'Post Type Singular Name' ),
-		'menu_name'           => __( 'Events' ),
-		'all_items'           => __( 'All Events' ),
-		'view_item'           => __( 'View Event' ),
-		'add_new_item'        => __( 'Add New Event' ),
-		'add_new'             => __( 'Add New' ),
-		'edit_item'           => __( 'Edit Event' ),
-		'update_item'         => __( 'Update Event' ),
-		'search_items'        => __( 'Search Events' ),
-		'not_found'           => __( 'Event Not found' ),
-		'not_found_in_trash'  => __( 'Event Not found in Trash' ),
-	);
-	$args = array(
-		'label'               => __( 'event' ),
-		'description'         => __( 'Events' ),
-		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'comments', 'custom-fields', 'page-attributes', 'post-formats' ),
-		'taxonomies'          => array( 'category', 'post_tag', 'gallery' ),
-		'hierarchical'        => false,
-		'public'              => true,
-		'show_ui'             => true,
-		'show_in_menu'        => true,
-		'show_in_nav_menus'   => true,
-		'show_in_admin_bar'   => true,
-		'menu_position'       => 5,
-		'menu_icon'           => 'dashicons-calendar',
-		'can_export'          => true,
-		'has_archive'         => true,
-		'exclude_from_search' => false,
-		'publicly_queryable'  => true,
-		'capability_type'     => 'page',
-	);
-	register_post_type( 'event', $args );
 
 	// Register Embed Custom Post Type
 	$labels = array(
@@ -135,6 +100,8 @@ function miim_init() {
 	register_taxonomy_for_object_type('gallery', 'attachment');
 	register_taxonomy_for_object_type('gallery', 'post');
 	register_taxonomy_for_object_type('gallery', 'page');
+	register_taxonomy_for_object_type('gallery', 'embed');
+
 }
 
 add_action( 'init', 'miim_init' );
@@ -146,6 +113,26 @@ register_nav_menus( array(
 	'secondary-menu'=>'Secondary Menu',
 	'footer-menu'=>'Footer Menu'
 ));
+
+function miim_widgets_init() {
+	register_sidebar( array(
+		'name' => 'Prayer Calendar',
+		'id' => 'prayer_calendar',
+		'before_widget' => '<div id="prayer">',
+		'after_widget' => '</div>',
+		'before_title' => '<h1>',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => 'Subscribe',
+		'id' => 'subscribe',
+		'before_widget' => '<div id="subscribe">',
+		'after_widget' => '</div>',
+		'before_title' => '<h1>',
+		'after_title' => '</h1>',
+	) );
+}
+add_action( 'widgets_init', 'miim_widgets_init' );
 
 // ADD FEATURED IMAGE SUPPORT
 add_theme_support('post-thumbnails');
@@ -194,6 +181,14 @@ function miim_theme_options() {
 					<input id="ig_userid" name="ig_userid" style="width:50%;" value="<?php echo $option['ig_userid']; ?>" /><br>
 					<label for="ig_usertoken"><h4>User Token:</h4></label>
 					<input id="ig_usertoken" name="ig_usertoken" style="width:50%;" value="<?php echo $option['ig_usertoken']; ?>" /><br>
+				</div>
+			</section>
+			<section id="banner" class="postbox">
+				<h3>Banner</h3>
+				<div class="inside">
+					<em>Enter front page banner text here</em>
+					<label for="miim_banner"><h4>Banner:</h4></label>
+					<input id="miim_banner" name="miim_banner" style="width:100%;" value="<?php echo $option['miim_banner']; ?>" /><br>
 				</div>
 			</section>
 			<section id="slideshow" class="postbox">
@@ -296,6 +291,7 @@ function miim_theme_options() {
 					fb_username : $('#fb_username').val(),
 					ig_userid : $('#ig_userid').val(),
 					ig_usertoken : $('#ig_usertoken').val(),
+					miim_banner : $('#miim_banner').val(),
 					miim_slideshow_gallery :$('#miim_slideshow_gallery option:selected').val(),
 					miim_title:$('#title').val(),
 			    	miim_address:$('#street1').val(),
@@ -332,7 +328,8 @@ add_action( 'wp_ajax_miim_theme_options_ajax_action', 'miim_theme_options_ajax_c
 function miim_metabox() {                              
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'page', 'normal', 'high' );
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'post', 'normal', 'high' );
-	add_meta_box( 'miim-events-metabox', 'Events', 'miim_events_metabox', 'events');
+	add_meta_box( 'miim-events-metabox', 'Events', 'miim_events_metabox', 'event');
+	add_meta_box( 'miim-embed-metabox', 'Embed Code', 'miim_embed_metabox', 'embed');
 }
 add_action( 'add_meta_boxes', 'miim_metabox' );
 
@@ -362,88 +359,41 @@ function miim_gallery_metabox ( $post ) { ?>
 	</script>
 <?php }
 
+/* Embed Code Meta Box */
+function miim_embed_metabox($post) {?>
+	<div style="border:1px solid #CCCCCC;padding:10px;margin-bottom:10px;"><?php
+		$values = get_post_custom( $post->ID );
+		$selected = isset( $values['film_embed'] ) ? $values['film_embed'][0] : '';
+		wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );?>
+		<p>
+		  <label for="film_embed"><p>Paste embed code for the film in the textbox below.</p></label>
+		  <textarea name="film_embed" id="film_embed" cols="62" rows="5" ><?php echo $selected; ?></textarea>
+		</p>
+	</div><?php   
 
-/* EVENTS */
-add_filter('manage_edit-miim_events_columns','miim_events_edit_columns');
-add_action('manage_posts_custom_column','miim_events_custom_columns');
+} 
 
-function miim_events_edit_columns($columns) {
-	$columns = array(
-		'cb'=>'<input type=\"checkbox\"/>',
-		'miim_col_ev_date'=>'Dates',
-		'miim_col_ev_times'=>'Times',
-		'title'=>'Event'
+/**
+ * Save Meta Boxes
+ */
+function metabox_save( $post_id ) {
+	//if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+	//if( !isset( $_POST['meta_box_nonce'] ) || !wp_verify_nonce( $_POST['meta_box_nonce'], 'my_meta_box_nonce' ) ) return;
+	//if( !current_user_can( 'edit_post' ) ) return;
+
+	$allowed = array( 
+		'a' => array( 
+			'href' => array() 
+		)
 	);
-	return $columns;
-}
-
-function miim_events_custom_columns() {
-	global $post;
-	$custom = get_post_custom();
-	switch ($column) {
-		case 'miim_col_ev_date' :
-			$startd = $custom['miim_events_startdate'][0];
-			$endd = $custom['miim_events_enddate'][0];
-			$startdate = date('F j, Y', $startd);
-			$enddate = date('F j, Y'),$endd);
-			echo $startdate .'<br/><em>'.$enddate.'</em>';
-		break;
-		case 'miim_col_ev_times' :
-			$startt = $custom['miim_events_startdate'][0];
-			$endt = $custom['miim_events_enddate'][0];
-			$time_format = get_option('time_format');
-			$starttime = date($time_format, $startt);
-			$endtime = date($time_format, $endt);
-			echo $starttime.'-'.$endtime;
-		break;
+	// save embed_metabox
+	if( isset( $_POST['film_embed'] ) ) {
+		update_post_meta( $post_id, 'film_embed', $_POST['film_embed'] );
+	}
+	// save gallery_metabox
+	if( isset($_POST['miim_gallery']) ) {
+		update_post_meta( $post_id, 'miim_gallery', $_POST['miim_gallery'] );
 	}
 }
+add_action( 'save_post', 'metabox_save' );
 
-function miim_events_metabox() {
-	global $post;
-	$custom = get_post_custom($post->ID);
-	$meta_sd = $custom['miim_events_startdate'][0];
-	$meta_ed = $custom['miim_events_enddate'][0];
-	$meta_st = $meta_sd; 
-	$meta_et = $meta_et;
-	$date_format = get_option('date_format');
-	$time_format = get_option('time_format');
-	if ($meta_sd == null){ $meta_sd = time(); $meta_ed = $meta_sd; $meta_st = 0; $meta_et = 0; }
-	$clean_sd = date('D, M d, Y', $meta_sd);
-	$clean_ed = date('D, M d, Y', $meta_ed);
-	$clean_st = date($time_format, $meta_st);
-	$clean_et = date($time_format, $meta_et);
-	echo '<input type="hidden" name="miim-events-nonce" id="miim-events-nonce" value="'.wp_create_nonce('miim-events-nonce').'"/>' ?>
-	<div style="border:1px solid #CCCCCC;padding:10px;margin-bottom:10px;">
-		<ul>
-			<li><label>Start Date</label><input name="miim_events_startdate" class="miimdate" value="<?php echo $clean_sd ?>"/></li>
-			<li><label>Start Time</label><input name="miim_events_starttime" value="<?php echo $clean_st ?>"/></li>
-			<li><label>End Date</label><input name="miim_events_enddate" class="miimdate" value="<?php echo $clean_ed ?>"/></li>
-			<li><label>End Time</label><input name="miim_events_endtime" value="<?php echo $clean_et ?>"/></li>
-		</ul>
-	</div><?php
-
-}
-
-add_action('save_post','save_miim_events');
-
-function save_miim_events(){
-	global $post;
-	if (!wp_verify_nonce($_POST['miim-events-nonce'],'miim-events-nonce')) {
-		return $post->ID;
-	}
-	if (!current_user_can('edit_post',$post->ID))
-		return $post->ID;
-	
-	if (!isset($_POST['miim_events_startdate'])):
-		return $post;
-	endif;
-	$updatestartd = strtotime($_POST['miim_events_startdate'].$_POST['miim_events_starttime']);
-	update_post_meta($post->ID, 'miim_events_startdate',$updatestartd);
-
-	if(!isset($_POST['miim_events_enddate'])):
-		return $post;
-	endif;
-	$updateendd = strtotime($_POST['miim_events_enddate'].$_POST['miim_events_endtime']);
-	update_post_meta($post->ID, 'miim_events_enddate',$updateendd);
-}
