@@ -18,7 +18,7 @@ function miim_scripts_styles() {
 	
 	/* STYLES */
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css');
-	wp_enqueue_style('global', get_stylesheet_directory_uri().'/style.css', array('bootstrap-css'));
+	wp_enqueue_style('global', get_stylesheet_directory_uri().'/style.css');
 
 }
 
@@ -176,11 +176,15 @@ function miim_theme_options() {
 					<h4>Facebook:</h4>
 					<label for="fb_username"><h4>Username:</h4></label>
 					<input id="fb_username" name="fb_username" style="width:50%;" value="<?php echo $option['fb_username']; ?>" /><br>
-					<h4>Instagram:</h4></br>
-				    <label for="ig_userid"><h4>User ID:</h4></label>
-					<input id="ig_userid" name="ig_userid" style="width:50%;" value="<?php echo $option['ig_userid']; ?>" /><br>
-					<label for="ig_usertoken"><h4>User Token:</h4></label>
-					<input id="ig_usertoken" name="ig_usertoken" style="width:50%;" value="<?php echo $option['ig_usertoken']; ?>" /><br>
+					<h4>Instagram:</h4>
+				    <label for="ig_username"><h4>Username:</h4></label>
+					<input id="ig_username" name="ig_username" style="width:50%;" value="<?php echo $option['ig_username']; ?>" /><br>
+					<h4>Youtube:</h4>
+				    <label for="yt_username"><h4>Username:</h4></label>
+					<input id="yt_username" name="yt_username" style="width:50%;" value="<?php echo $option['yt_username']; ?>" /><br>
+					<h4>Flickr:</h4>
+				    <label for="fk_username"><h4>Username:</h4></label>
+					<input id="fk_username" name="fk_username" style="width:50%;" value="<?php echo $option['fk_username']; ?>" /><br>
 				</div>
 			</section>
 			<section id="banner" class="postbox">
@@ -289,16 +293,17 @@ function miim_theme_options() {
 					tw_at : $('#tw_at').val(),
 					tw_as : $('#tw_as').val(),
 					fb_username : $('#fb_username').val(),
-					ig_userid : $('#ig_userid').val(),
-					ig_usertoken : $('#ig_usertoken').val(),
+					ig_userid : $('#ig_username').val(),
+					yt_userid : $('#yt_username').val(),
+					fk_userid : $('#fk_username').val(),
 					miim_banner : $('#miim_banner').val(),
 					miim_slideshow_gallery :$('#miim_slideshow_gallery option:selected').val(),
 					miim_title:$('#title').val(),
-			    	miim_address:$('#street1').val(),
-			    	miim_address:$('#street2').val(),
-			    	miim_address:$('#city').val(),
-			    	miim_address:$('#state').val(),
-			    	miim_address:$('#zip').val(),
+			    	miim_street1:$('#street1').val(),
+			    	miim_street2:$('#street2').val(),
+			    	miim_city:$('#city').val(),
+			    	miim_state:$('#state').val(),
+			    	miim_zip:$('#zip').val(),
 			    	miim_phone:	$('#phone_number').val(),
 					miim_email:$('#email').val(),
 			    	miim_copyright:$('#copyright').val(),
@@ -330,6 +335,7 @@ function miim_metabox() {
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'post', 'normal', 'high' );
 	add_meta_box( 'miim-events-metabox', 'Events', 'miim_events_metabox', 'event');
 	add_meta_box( 'miim-embed-metabox', 'Embed Code', 'miim_embed_metabox', 'embed');
+	add_meta_box('miim-page-post-category-meta', 'Post Category', 'miim_page_post_category_meta', 'page', 'normal', 'high');
 }
 add_action( 'add_meta_boxes', 'miim_metabox' );
 
@@ -370,8 +376,34 @@ function miim_embed_metabox($post) {?>
 		  <textarea name="film_embed" id="film_embed" cols="62" rows="5" ><?php echo $selected; ?></textarea>
 		</p>
 	</div><?php   
-
 } 
+
+/*
+* Category Post Meta Box - adds a category option to select which posts a page displays
+*/
+function miim_page_post_category_meta ( $post ) { ?>
+	<div style="border:1px solid #CCCCCC;padding:10px;margin-bottom:10px;">
+		<label for="miim_post_category">Select which posts by category to feed on to this page: </label>
+		<?php wp_dropdown_categories( array(
+			'selected'=> get_post_meta($post->ID, 'miim_post_category', true),
+			'name' => 'miim_post_category',
+			'show_option_none' => 'None',
+			'class' => 'postform miim-dropdown',
+			'hide_empty' => false
+		) ); ?>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function($){
+			$(".cobalt-dropdown").change(function(){
+				if( $(this).val()!=-1 ) {
+					$(this).siblings().each(function(){
+						$(this).val(-1);
+					});
+				}
+			});
+		});
+	</script>
+<?php }
 
 /**
  * Save Meta Boxes
@@ -386,13 +418,14 @@ function metabox_save( $post_id ) {
 			'href' => array() 
 		)
 	);
-	// save embed_metabox
 	if( isset( $_POST['film_embed'] ) ) {
 		update_post_meta( $post_id, 'film_embed', $_POST['film_embed'] );
 	}
-	// save gallery_metabox
 	if( isset($_POST['miim_gallery']) ) {
 		update_post_meta( $post_id, 'miim_gallery', $_POST['miim_gallery'] );
+	}
+	if( isset($_POST['miim_post_category']) ) {
+		update_post_meta( $post_id, 'miim_post_category', $_POST['miim_post_category'] );
 	}
 }
 add_action( 'save_post', 'metabox_save' );

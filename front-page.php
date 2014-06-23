@@ -5,52 +5,6 @@
 get_header();
 $option = get_option('miim_theme_options'); ?>
 <div class="row">
-	<div class="col-md-8">
-		<div class="row">
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-12">
-						<section id="branding">
-							<img src="<?php echo $option['branding']['src']; ?>"/>
-						</section>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<?php if ( dynamic_sidebar('subscribe') ) : else : endif; ?>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<?php if ( dynamic_sidebar('prayer_calendar') ) : else : endif; ?>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="row">
-			<div class="col-md-12">
-				<section id="events">
-					<h1>Upcoming Events</h1><?php
-					$args = array(
-						'post_type' => 'events',
-						'meta_key' => '_start_eventtimestamp',
-						'orderby'=> 'meta_value_num',
-						'order' => 'ASC',
-						'posts_per_page' => 1
-					);
-					$events = new WP_Query( $args );
-					while ( $events->have_posts() ) : $events->the_post();
-				    	$id = get_the_ID();?>
-				    	<h2><?php the_title(); ?></h2><?php
-				    	the_content();
-				  	endwhile; ?>
-				  	<a href="<?php echo get_post_type_archive_link( 'get_post_type($id)' ); ?>">Upcoming Events</a>
-				</section>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row">
 	<div class="col-md-12">
 		<section id="carousel" class="carousel slide" data-ride="carousel"><?php
 			$gallery = $option['miim_slideshow_gallery'];
@@ -91,6 +45,53 @@ $option = get_option('miim_theme_options'); ?>
 			<a class="left carousel-control" href="#carousel" data-slide="prev"></a>
 			<a class="right carousel-control" href="#carousel" data-slide="next"></a>
 		</section>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-12">
+						<section id="branding">
+							<img src="<?php echo $option['branding']['src']; ?>"/>
+						</section>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<?php if ( dynamic_sidebar('subscribe') ) : else : endif; ?>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<?php if ( dynamic_sidebar('prayer_calendar') ) : else : endif; ?>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="row">
+			<div class="col-md-12">
+				<section id="events">
+					<h1>Upcoming Events</h1><?php
+					$args = array(
+						'post_type' => 'events',
+						'meta_key' => '_start_eventtimestamp',
+						'orderby'=> 'meta_value_num',
+						'order' => 'ASC',
+						'posts_per_page' => 1
+					);
+					$events = new WP_Query( $args );
+					while ( $events->have_posts() ) : $events->the_post();
+				    	$id = get_the_ID();?>
+				    	<h2><?php the_title(); ?></h2><?php
+				    	the_content();
+				  	endwhile;
+				  	$posttype = get_post_type($id); ?>
+				  	<a href="<?php echo get_post_type_archive_link( $posttype ); ?>">Upcoming Events</a>
+				</section>
+			</div>
+		</div>
 	</div>
 </div>
 <div class="row">
