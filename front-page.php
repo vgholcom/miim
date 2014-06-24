@@ -113,7 +113,7 @@ $option = get_option('miim_theme_options'); ?>
     <div class="col-md-8">
     	<section id="recent">
 			<h1>Recent Posts</h1>
-			<div class="row"><?php
+			<div class="posts row"><?php
 				$args = array(
 					'post_type' => 'post',
 					'posts_per_page' => 3
@@ -124,7 +124,8 @@ $option = get_option('miim_theme_options'); ?>
 				    	$id = get_the_ID();
 				    	echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));?>
 				    	<h2><?php the_title(); ?></h2><?php
-				    	the_content(); ?>
+				    	the_excerpt(); ?>
+				    	<a class="more" href="<?php echo the_permalink(); ?>">READ MORE</a>
 				   	</article><?php
 				endwhile; ?>
 			</div>

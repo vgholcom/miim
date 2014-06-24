@@ -3,8 +3,8 @@
  * Footer Template
  */
 $option = get_option('miim_theme_options'); ?>
-	</section><!-- main-content -->
 	</div><!-- container -->
+	</section><!-- main-content -->
 	<footer id="footer">
 		<div class="container">
 			<div class="row">
@@ -19,11 +19,11 @@ $option = get_option('miim_theme_options'); ?>
 				</div>
 				<div class="col-md-3">
 					<h1>Connect With Us</h1>
-					<span><?php echo $option['tw_username']; ?></span>
-					<span><?php echo $option['fb_username']; ?></span>
-					<span><?php echo $option['ig_username']; ?></span>
-					<span><?php echo $option['yt_username']; ?></span>
-					<span><?php echo $option['fk_username']; ?></span>
+					<span><?php if (isset($option['tw_username'])) { ?><i class="fa fa-twitter-square"></i><a href="http://www.twitter.com/<?php echo $option['tw_username']; ?>"><?php echo $option['tw_username']; }?></a></span>
+					<span><?php if (isset($option['fb_username'])) { ?><i class="fa fa-facebook-square"></i><a href="http://www.facebook.com/<?php echo $option['fb_username']; ?>"><?php echo $option['fb_username']; }?></a></span>
+					<span><?php if (isset($option['ig_username'])) { ?><i class="fa fa-instagram"></i><a href="http://www.instagram.com/<?php echo $option['ig_username']; ?>"><?php echo $option['ig_username']; }?></a></span>
+					<span><?php if (isset($option['yt_username'])) { ?><i class="fa fa-youtube-square"></i><a href="http://www.youtube.com/<?php echo $option['yt_username']; ?>"><?php echo $option['yt_username']; }?></a></span>
+					<span><?php if (isset($option['fk_username'])) { ?><i class="fa fa-flickr"></i><a href="http://www.flickr.com/<?php echo $option['fk_username']; ?>"><?php echo $option['fk_username']; }?></a></span>
 				</div>
 				<div class="col-md-3">
 					<section id="events-footer">
@@ -32,8 +32,8 @@ $option = get_option('miim_theme_options'); ?>
 							'post_type' => 'events',
 							'meta_key' => '_start_eventtimestamp',
 							'orderby'=> 'meta_value_num',
-							'order' => 'ASC',
-							'posts_per_page' => 4
+							'order' => 'DEC',
+							'posts_per_page' => 3
 						);
 						$events = new WP_Query( $args );
 						while ( $events->have_posts() ) : $events->the_post();?>

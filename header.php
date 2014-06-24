@@ -57,5 +57,5 @@
 			</nav>
 		</div>
 	</header>
-	<div class="container">
 	<section id="main-content">
+	<div class="container">
