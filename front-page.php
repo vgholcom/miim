@@ -30,7 +30,7 @@ $option = get_option('miim_theme_options'); ?>
 				<div class="row">
 					<div class="col-md-12">
 						<section id="banner">
-							<?php echo $option['miim_banner']; ?>
+							<h4><?php echo $option['miim_banner']; ?></h4>
 						</section>
 					</div>
 				</div>
@@ -50,13 +50,17 @@ $option = get_option('miim_theme_options'); ?>
 						'posts_per_page' => 1
 					);
 					$events = new WP_Query( $args );
-					while ( $events->have_posts() ) : $events->the_post();
-				    	$id = get_the_ID();?>
-				    	<h2><?php the_title(); ?></h2><?php
-				    	the_content();
-				  	endwhile;
-				  	$posttype = get_post_type($id); ?>
-				  	<a href="<?php echo get_post_type_archive_link( $posttype ); ?>">Upcoming Events</a>
+					while ( $events->have_posts() ) : $events->the_post(); ?>
+						<article><?php 
+					    	$id = get_the_ID();
+					    	echo get_the_post_thumbnail($id, 'thumbnail', array('class'=>'img-responsive pull-right'));?>
+					    	<h2><a href="<?php the_permalink(); ?>"><?php the_title($event); ?></a></h2>
+					    	<i><?php eventposttype_get_the_event_date('_start'); ?></i><?php
+					    	the_excerpt('...'); 
+					    	$posttype = get_post_type($id); ?>
+				  			<a class="more" href="<?php echo get_post_type_archive_link( $posttype ); ?>">More upcoming events</a>
+					    </article><?php
+				  	endwhile;?>
 				</section>
 			</div>
 		</div>

@@ -98,6 +98,8 @@ a img.aligncenter {
 -------------------------------------------------------------- */
 body {
     background-image: url('img/cross_scratches.png');
+    font-family: MuseoSans-500;
+
 }
 h1 {
     font-size: 18px;
@@ -196,6 +198,13 @@ img {
 .masjidnow-daily-footer {
     display: none;
 }
+.masjidnow-salah-timings-table {
+    width: 100%;
+    margin: 0;
+}
+.masjidnow-salah-timings-table .masjidnow-salah-name {
+    font-weight: normal;
+}
 .masjidnow-container {
     padding: 0;
 }
@@ -204,22 +213,28 @@ img {
     padding:0px;    
     width:100%;
     background-color: #fff;
-    height: 67px;
+    height: 97px;
+    overflow: hidden;
+}
+#banner h4 {
+    padding: 0;
+    text-align: center;
+    margin: 0px;
 }
 #subscribe {
     margin-top: 13px;
-    padding:13px; 
+    padding:0px; 
     background-color: #fff;  
 }
 #subscribe .submit {
     background-color: #ccc;
     border: none;
-    padding: 0;
+    padding: 13px;
     margin: 0;
 }
 #subscribe #emailSub-email {
     border: none;
-    padding: 0; 
+    padding: 13px; 
     margin: 0;
 }
 #emailSub-widget {
@@ -243,8 +258,33 @@ img {
 #events {
     margin-top: 13px;
     padding:0px;
-    height:320px; 
+    height:310px; 
     background-color: #fff;
+    overflow: hidden;
+}
+#events article {
+    padding: 11px 6px 11px 11px;
+}
+#events article h2 {
+    margin: 0;
+}
+#events article a {
+    color: #5d5d5d;
+}
+#events article i {
+    margin-bottom: 15px;
+}
+#events article img {
+    border: 1px solid #d5d5d5;
+    margin: 5px;
+}
+#events article p {
+    margin: 0 0 20px;
+}
+#events .more {
+    bottom: 10px;
+    position: absolute;
+    right: 25px;
 }
 #recent {
     margin-top: 13px;
