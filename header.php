@@ -23,9 +23,6 @@
 	<header id="secondary-header" class="navbar navbar-static-top">
 		<div class="container">
 			<section id="secondary">
-				<article class="pull-right"><?php
-					get_search_form();?>
-				</article>
 				<nav id="secondary-header-nav" class="pull-left"><?php 
 					wp_nav_menu(array(
 						'theme_location'=>'secondary-menu', 
@@ -36,14 +33,17 @@
 						'depth'=>1
 					)); ?>
 				</nav>
+				<article class="pull-right"><?php
+					get_search_form();?>
+				</article>
 			</section>
 			<div id="secondary-before" class="pull-right"></div>
 		</div>
 	</header>
 	<header id="primary-header" class="navbar navbar-default navbar-static-top">
 		<div class="container">
-			<article class="pull-left"><?php
-					bloginfo('name');?>
+			<article id="logo" class="pull-left">
+				<a href="<?php bloginfo('url'); ?>"><?php bloginfo('name');?></a>
 			</article>
 			<nav id="primary-header-nav" class="pull-right"><?php 
 				wp_nav_menu(array(

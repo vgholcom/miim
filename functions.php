@@ -18,6 +18,7 @@ function miim_scripts_styles() {
 	
 	/* STYLES */
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css');
+	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css' );
 	wp_enqueue_style('global', get_stylesheet_directory_uri().'/style.css');
 
 }

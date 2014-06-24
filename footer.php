@@ -62,6 +62,10 @@ $option = get_option('miim_theme_options'); ?>
 					</div>
 				</div>
 			</div>
+		</div>
+	</footer>
+	<footer id="secondary-footer">
+		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<div id="copy">
@@ -69,9 +73,16 @@ $option = get_option('miim_theme_options'); ?>
 					</div>
 				</div>
 				<div class="col-md-6">
-					<div id="footer-nav">
-						FOOTER NAVIGAION
-					</div>
+					<nav id="footer-nav" class="pull-right"><?php 
+						wp_nav_menu(array(
+							'theme_location'=>'footer-menu', 
+							'container'=>'',
+							'menu_class'=>'nav navbar-nav',
+							'menu_id'=>'sub-head-menu',
+							'fallback_cb'=>false,
+							'depth'=>1
+						)); ?>
+					</nav>
 				</div>
 			</div>
 		</div>
