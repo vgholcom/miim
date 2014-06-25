@@ -222,6 +222,7 @@ img {
     background-color: #fff;
     height: 97px;
     overflow: hidden;
+    border: 2px solid #5d5d5d;
 }
 #banner h4 {
     padding: 0;
@@ -252,15 +253,46 @@ img {
     display:inline;
     float: left;
 }
-.twitter-feed {
+#twitter {
     margin-top: 13px;
     padding:0px;
+    background-color: #fff;
+    height: 450px;
+}
+.twitter-feed {
+    padding: 6px 11px 11px 11px;
+}
+#twitter article {
+    max-height: 100px;
+    margin: 0 5px;
+    border-bottom: 1px dashed #ccc;
+    padding: 10px 0;
+}
+#twitter article:last-of-type {
+    border-bottom: none; 
+}
+#twitter article p {
+    font-size: 14px;
+    margin: 0;
+}
+#twitter article .more {
+    float:right;
 }
 #carousel{
     margin-top: 13px;
     height: 400px;
     overflow: hidden;
     border: 13px solid #fff;
+}
+#carousel .fa-play-circle-o {
+    color:#FFFFFF;
+    font-size:12em;
+    opacity:0.8;
+    position:absolute;
+    z-index:1;
+    width: 100%;
+    text-align: center;
+    top: 103px;
 }
 #events {
     margin-top: 13px;
@@ -319,7 +351,44 @@ img {
 }
 /* =Page
 -------------------------------------------------------------- */
-
+.blog h1 {
+    border-left:4px solid #5d5d5d;
+    background-color: #ccc;
+    line-height: 24px;
+    padding-left: 2px;
+    margin: 0 0 4px 0;
+}
+.blog article {
+    display: block;
+    padding-bottom: 10px;
+}
+.blog img {
+    border: 1px solid #5d5d5d;
+    float: left;
+    margin-right: 10px;
+}
+.blog .blog-post img + p {
+  display:inline;
+}
+.single-embed section {
+    width:100%;
+    background-color: #fff;
+}
+.single-embed iframe {
+    border: 4px solid #fff;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 11px 0;
+}
+.single-embed h1 {
+    border-left:4px solid #5d5d5d;
+    background-color: #ccc;
+    line-height: 24px;
+    padding-left: 2px;
+    margin: 0 0 4px 0;
+}
 /* =Footer
 -------------------------------------------------------------- */
 #footer {

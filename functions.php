@@ -14,10 +14,12 @@ function miim_scripts_styles() {
 	/* SCRIPTS */
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('bootstrap-js', get_template_directory_uri().'/js/bootstrap.min.js', array('jquery'));
+	wp_enqueue_script('prettyphoto-js', get_template_directory_uri().'/js/jquery.prettyPhoto.js', array('jquery'));
 	wp_enqueue_script('main-js', get_template_directory_uri().'/js/main.js', array('jquery'));
 	
 	/* STYLES */
 	wp_enqueue_style('bootstrap-css', get_template_directory_uri().'/css/bootstrap.min.css');
+	wp_enqueue_style( 'prettyphoto-css', get_template_directory_uri() . '/css/prettyPhoto.css' );
 	wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/css/font-awesome.min.css' );
 	wp_enqueue_style( 'fonts', get_template_directory_uri() . '/css/MyFontsWebfontsKit.css' );
 	wp_enqueue_style('global', get_stylesheet_directory_uri().'/style.css');
@@ -129,6 +131,14 @@ function miim_widgets_init() {
 		'name' => 'Subscribe',
 		'id' => 'subscribe',
 		'before_widget' => '<div id="subscribe">',
+		'after_widget' => '</div>',
+		'before_title' => '<h1>',
+		'after_title' => '</h1>',
+	) );
+	register_sidebar( array(
+		'name' => 'Archive',
+		'id' => 'archive',
+		'before_widget' => '<div id="archive">',
 		'after_widget' => '</div>',
 		'before_title' => '<h1>',
 		'after_title' => '</h1>',

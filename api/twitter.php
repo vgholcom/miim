@@ -30,12 +30,12 @@ function miim_get_twitter_stream($username=false){
 
 function miim_twitter_stream($username=null) {
     $stream = miim_get_twitter_stream($username); $i=0;
-    $output = '<section class="twitter-feed">';
-    $output .= '<h1>'.$username.'</h1>';
+    $output .= '<h1>Recent Tweets</h1>';
+    $output .= '<section class="twitter-feed">';
     for($i = 0; $i < 4 ; $i++) {
-        $output .= '<article class="twitter-entry" id="twitter-'.$i.'">';
+        $output .= '<article class="twitter-entry row" id="twitter-'.$i.'"><div class="col-md-12">';
         $output .= '<p>'.miim_twitterify($stream[$i]['text']).'</p>';
-        $output .= ' <a href="https://twitter.com/'.$username.'/status/'.$stream[$i]['id_str'].'">View Now</a></article>';
+        $output .= ' <a class="more" href="https://twitter.com/'.$username.'/status/'.$stream[$i]['id_str'].'">View Now</a></div></article>';
     }        
     $output .= '</section>';
 	// return output
