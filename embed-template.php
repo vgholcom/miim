@@ -21,7 +21,7 @@ $i = 0; ?>
 				<h2><?php the_title(); ?></h2>
 			</a><?php
 			the_excerpt(); ?>
-			<a class="more" href="<?php echo the_permalink(); ?>">VIEW</a>
+			<a class="more" href="<?php echo the_permalink(); ?>">VIEW <i class="fa fa-angle-double-right"></i></a>
 		</article><?php
 	endwhile; wp_reset_postdata(); ?>
 </div><?php

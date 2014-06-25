@@ -99,6 +99,7 @@ a img.aligncenter {
 body {
     font-family: MuseoSans-500;
     background-color: #F5F5F5;
+    background-image: url('img/white_sand.png');
 }
 h1 {
     font-size: 18px;
@@ -140,6 +141,9 @@ img {
 #secondary li a:first-of-type {
     padding-left: 0px;
 }
+.fa-search {
+    color: #5d5d5d;
+}
 #searchform #search-button {
     border: none;
     background: none;
@@ -173,19 +177,31 @@ img {
 /* =Front Page
 -------------------------------------------------------------- */
 #main-content {
-    background-image: url('img/cross_scratches.png');
+    background-image: url('img/white_sand.png');
     box-shadow: 0 0 10px #ccc;
-    padding: 13px 0px;
+    padding: 0 0 13px 0px;
 }
-#main-content a {
-    color: #5d5d5d;
+.content-banner {
+    width:100%;
+    background-color: #758358;
+    padding: 3px 0;
+}
+.breadcrumbs {
+    color: #f5f5f5;
+}
+#main-content .breadcrumbs a {
+    color: #f5f5f5;
 }
 .home #main-content h1 {
     border-left:4px solid #5d5d5d;
-    background-color: #ccc;
+    background-color: #758358;
     line-height: 24px;
     padding-left: 2px;
     margin: 0 0 4px 0;
+    color: #f5f5f5;
+}
+#main-content a {
+    color: #5d5d5d;
 }
 #branding {
     margin-top: 13px;
@@ -229,16 +245,25 @@ img {
     text-align: center;
     margin: 0px;
 }
+#banner a {
+    color: #758358;
+}
 #subscribe {
     margin-top: 13px;
     padding:0px; 
     background-color: #fff;  
 }
-#subscribe .submit {
-    background-color: #ccc;
+#subscribe .submit,
+.wpcf7-submit {
+    background-color: #758358;
     border: none;
     padding: 13px;
     margin: 0;
+    color: #f5f5f5;
+}
+.wpcf7-submit {
+    float: left;
+    width:150px;
 }
 #subscribe #emailSub-email {
     border: none;
@@ -351,23 +376,40 @@ img {
 }
 /* =Page
 -------------------------------------------------------------- */
-.blog h1 {
-    border-left:4px solid #5d5d5d;
-    background-color: #ccc;
+.blog h1,
+.page h1,
+.single-embed h1,
+.archive h1 {
     line-height: 24px;
-    padding-left: 2px;
-    margin: 0 0 4px 0;
+    margin: 15px 0;
 }
-.blog article {
+.blog article,
+.page article {
     display: block;
     padding-bottom: 10px;
 }
-.blog img {
+.blog img,
+.page img {
     border: 1px solid #5d5d5d;
     float: left;
-    margin-right: 10px;
+    margin: 0 10px 10px 0;
 }
-.blog .blog-post img + p {
+.blog img {
+    width:100%;
+    height: auto;
+}
+.blog article {
+    border-bottom: 1px dashed #ccc;
+}
+.blog .more {
+    float: right;
+    text-transform: uppercase;
+}
+.blog article:last-of-type {
+    border-bottom: none;
+}
+.blog .blog-post img + p,
+.page .blog-post img + p {
   display:inline;
 }
 .single-embed section {
@@ -382,17 +424,22 @@ img {
     margin-right: auto;
     padding: 11px 0;
 }
-.single-embed h1 {
-    border-left:4px solid #5d5d5d;
-    background-color: #ccc;
-    line-height: 24px;
-    padding-left: 2px;
-    margin: 0 0 4px 0;
+#eventlist {
+    width: 100%;
+}
+.wpcf7-form-control-wrap input,
+.wpcf7-form-control-wrap textarea {
+    width: 70%;
 }
 /* =Footer
 -------------------------------------------------------------- */
 #footer {
     padding: 20px 0;
+    width: 100%;
+}
+#footer h1{
+    color: #758358;
+    line-height: 24px;
 }
 #footer span {
     display: block;

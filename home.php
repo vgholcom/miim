@@ -12,16 +12,13 @@ get_header();?>
 				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				<p class="muted"><small>Posted in <?php echo $categories_list; ?> on <a href="<?php echo get_day_link(get_post_time('Y'), get_post_time('m'), get_post_time('j')); ?>"><?php the_time('F jS, Y'); ?></a> by <?php the_author_posts_link(); ?>.</small></p>
 				<div class="content-blogpost"><?php
-					echo get_the_post_thumbnail($id, 'thumbnail');
+					echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));
 					$excerpt = get_the_excerpt();
-					echo '<p>'.$excerpt.'... <a class="read-more" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title( get_the_ID() ).'">Read more <i class="icon-double-angle-right"></i></a></p>'; ?>
+					echo '<p>'.$excerpt.'... <a class="more" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title( get_the_ID() ).'">Read more <i class="fa fa-angle-double-right"></i></a></p>'; ?>
 				</div>
 				<p class="muted">
 					<small><?php
 						echo get_the_tag_list( 'Tags: ', ', ', ' | ' ); ?>
-						<a href="<?php comments_link(); ?>"><?php
-  						echo get_comments_number()==0 ? 'Leave a comment' : comments_number(); ?>
-  						</a>
 					</small>
 				</p>
 			</article><?php 

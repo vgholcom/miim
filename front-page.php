@@ -128,7 +128,7 @@ $option = get_option('miim_theme_options'); ?>
 				    	echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));?>
 				    	<h2><?php the_title(); ?></h2><?php
 				    	the_excerpt(); ?>
-				    	<a class="more" href="<?php echo the_permalink(); ?>">READ MORE</a>
+				    	<a class="more" href="<?php echo the_permalink(); ?>">READ MORE <i class="fa fa-angle-double-right"></i></a>
 				   	</article><?php
 				endwhile; ?>
 			</div>

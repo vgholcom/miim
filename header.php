@@ -57,5 +57,13 @@
 			</nav>
 		</div>
 	</header>
-	<section id="main-content">
+	<section id="main-content"><?php 
+		if (is_front_page() || is_home()) {
+		} else { ?>
+			<div class="content-banner">
+				<div class="container">
+					<?php breadcrumbs(); ?>
+				</div>
+			</div><?php
+		} ?>
 	<div class="container">
