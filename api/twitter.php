@@ -35,7 +35,7 @@ function miim_twitter_stream($username=null) {
     for($i = 0; $i < 4 ; $i++) {
         $output .= '<article class="twitter-entry row" id="twitter-'.$i.'"><div class="col-md-12">';
         $output .= '<p>'.miim_twitterify($stream[$i]['text']).'</p>';
-        $output .= ' <a class="more" href="https://twitter.com/'.$username.'/status/'.$stream[$i]['id_str'].'">View Now</a></div></article>';
+        $output .= ' <a class="more" href="https://twitter.com/'.$username.'/status/'.$stream[$i]['id_str'].'">VIEW NOW <i class="fa fa-angle-double-right"></i></a></div></article>';
     }        
     $output .= '</section>';
 	// return output

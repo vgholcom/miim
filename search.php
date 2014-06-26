@@ -4,7 +4,7 @@
  */
 get_header();?>
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-12">
 		<h1>Search Results</h1><?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 			<article class="post clearfix"> 
@@ -17,9 +17,6 @@ get_header();?>
 			<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php 
 		endif;
 		?>
-	</div>
-	<div class="col-md-4">
-		<?php if ( dynamic_sidebar('archive') ) : else : endif; ?>
 	</div>
 </div>
 <?php

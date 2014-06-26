@@ -14,7 +14,7 @@ $videos = new WP_query( array(
 $i = 0; ?>
 <div class="row"><?php
 	while( $videos->have_posts() ) : $videos->the_post(); ?>
-		<article class="video col-md-3"><?php
+		<article class="video col-md-3 col-sm-6"><?php
 				$id = get_the_ID();
 				echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive')); ?>
 				<h2><?php the_title(); ?></h2><?php

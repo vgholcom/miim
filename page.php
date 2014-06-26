@@ -24,7 +24,7 @@ if ( (isset($post_category) && $post_category!=null && $post_category!=-1) ) :
 	//print each post in that category ?>
 	<div class="row"><?php
 	while ( have_posts() ) : the_post(); ?>
-		<article class="col-md-3"><?php 
+		<article class="col-md-3 col-sm-6"><?php 
 			$id = get_the_ID();
 			echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));?>
 			<h2><?php the_title(); ?></h2><?php
@@ -50,7 +50,7 @@ if (isset($attachedGal)&&$attachedGal!=''&&$attachedGal!=-1) :
 	<div class="row"><?php
 		while( $items->have_posts() ) : $items->the_post(); 
 			$id = get_the_ID(); ?>
-			<article class="galery col-md-3">
+			<article class="galery col-md-3 col-sm-6">
 				<a href="<?php echo wp_get_attachment_url($id); ?>" rel="prettyphoto[<?php echo 'gal-'. $attachedGal; ?>]" title="<?php the_title()?> "><img src="<?php echo wp_get_attachment_url($id);?>"/></a>
 			</article><?php
 		endwhile; wp_reset_postdata(); ?>

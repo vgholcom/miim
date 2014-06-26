@@ -22,7 +22,7 @@ if (isset($attachedGal)&&$attachedGal!='') :
 		<div class="row"><?php
 			while( $items->have_posts() ) : $items->the_post(); 
 				$id = get_the_ID(); ?>
-				<article class="galery col-md-3">
+				<article class="galery col-md-3 col-sm-6">
 					<a href="<?php echo wp_get_attachment_url($id); ?>" rel="prettyphoto[<?php echo 'gal-'. $attachedGal; ?>]" title="<?php the_title()?> "><img src="<?php echo wp_get_attachment_url($id);?>"/></a>
 				</article><?php
 			endwhile; wp_reset_postdata(); ?>

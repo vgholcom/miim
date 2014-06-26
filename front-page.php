@@ -5,30 +5,30 @@
 get_header();
 $option = get_option('miim_theme_options'); ?>
 <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-8 col-sm-12">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-8 col-sm-12">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12">
 						<section id="branding">
 							<img src="<?php echo $option['branding']['src']; ?>"/>
 						</section>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12">
 						<?php if ( dynamic_sidebar('subscribe') ) : else : endif; ?>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4 col-sm-12">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12">
 						<?php if ( dynamic_sidebar('prayer_calendar') ) : else : endif; ?>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12 col-sm-12">
 						<section id="banner">
 							<h4><?php echo $option['miim_banner']; ?></h4>
 						</section>
@@ -37,15 +37,15 @@ $option = get_option('miim_theme_options'); ?>
 			</div>
 		</div>
 	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-sm-12">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 col-sm-12">
 				<section id="events">
 					<h1>Upcoming Events</h1><?php
 					$args = array(
 						'post_type' => 'events',
 						'meta_key' => '_start_eventtimestamp',
-						'orderby'=> 'meta_value_num',
+						'orderby'=> 'meta_value',
 						'order' => 'ASC',
 						'posts_per_page' => 1
 					);
@@ -58,7 +58,7 @@ $option = get_option('miim_theme_options'); ?>
 					    	<i><?php eventposttype_get_the_event_date('_start'); ?></i><?php
 					    	the_excerpt('...'); 
 					    	$posttype = get_post_type($id); ?>
-				  			<a class="more" href="<?php echo get_post_type_archive_link( $posttype ); ?>">More upcoming events</a>
+				  			<a class="more" href="<?php echo get_post_type_archive_link( $posttype ); ?>">MORE UPCOMING EVENTS <i class="fa fa-angle-double-right"></i></a>
 					    </article><?php
 				  	endwhile;?>
 				</section>
@@ -67,7 +67,7 @@ $option = get_option('miim_theme_options'); ?>
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-12 col-sm-12">
 		<section id="carousel" class="carousel slide" data-ride="carousel"><?php
 			$gallery = $option['miim_slideshow_gallery'];
 			$items = new WP_query(array(
@@ -99,10 +99,7 @@ $option = get_option('miim_theme_options'); ?>
 						if (get_post_type() == 'video') { ?>
 							<a href="<?php the_permalink(); ?>"><i class="fa fa-play-circle-o"></i></a><?php
 						} ?>
-						<img src="<?php echo get_template_directory_uri() ?>/admin/timthumb.php?src=<?php echo $image; ?>&amp;w=1116&amp;h=376&amp;q=100&amp;a=c&amp;zc=1" alt="<?php echo get_the_title(get_the_ID()); ?>">
-						<div class="carousel-caption"><?php
-							the_title(); ?>
-						</div>
+						<img src="<?php echo get_template_directory_uri() ?>/admin/timthumb.php?src=<?php echo $image; ?>&amp;w=1125&amp;h=376&amp;q=100&amp;a=c&amp;zc=1" alt="<?php echo get_the_title(get_the_ID()); ?>">
 					</div><?php
 				endwhile;
 				wp_reset_postdata(); ?>
@@ -113,7 +110,7 @@ $option = get_option('miim_theme_options'); ?>
 	</div>
 </div>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-12">
     	<section id="recent">
 			<h1>Recent Posts</h1>
 			<div class="posts row"><?php
@@ -123,7 +120,7 @@ $option = get_option('miim_theme_options'); ?>
 				);
 				$recent = new WP_Query( $args );
 				while ( $recent->have_posts() ) : $recent->the_post(); ?>
-					<article class="col-md-4"><?php
+					<article class="col-md-4 col-sm-12"><?php
 				    	$id = get_the_ID();
 				    	echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));?>
 				    	<h2><?php the_title(); ?></h2><?php
@@ -134,7 +131,7 @@ $option = get_option('miim_theme_options'); ?>
 			</div>
 		</section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-12">
     	<section id="twitter"><?php
 			echo miim_twitter_stream($option['tw_username']); ?>
 		</section>

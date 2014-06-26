@@ -18,7 +18,7 @@ get_header();?>
 				</div>
 				<p class="muted">
 					<small><?php
-						echo get_the_tag_list( 'Tags: ', ', ', ' | ' ); ?>
+						echo get_the_tag_list( 'Tags: ', ', ' ); ?>
 					</small>
 				</p>
 			</article><?php 
@@ -31,7 +31,9 @@ get_header();?>
 		?>
 	</div>
 	<div class="col-md-4">
-		<?php if ( dynamic_sidebar('archive') ) : else : endif; ?>
+		<div class="sidebar">
+			<?php if ( dynamic_sidebar('archive') ) : else : endif; ?>
+		</div>
 	</div>
 </div>
 <?php

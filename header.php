@@ -45,7 +45,13 @@
 			<article id="logo" class="pull-left">
 				<a href="<?php bloginfo('url'); ?>"><?php bloginfo('name');?></a>
 			</article>
-			<nav id="primary-header-nav" class="pull-right"><?php 
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-header-nav">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+			<nav id="primary-header-nav" class="pull-right collapse navbar-collapse"><?php 
 				wp_nav_menu(array(
 					'theme_location'=>'primary-menu', 
 					'container'=>'',
@@ -57,7 +63,7 @@
 			</nav>
 		</div>
 	</header>
-	<section id="main-content"><?php 
+	<?php 
 		if (is_front_page() || is_home()) {
 		} else { ?>
 			<div class="content-banner">
@@ -66,4 +72,5 @@
 				</div>
 			</div><?php
 		} ?>
+	<section id="main-content">
 	<div class="container">

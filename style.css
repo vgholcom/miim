@@ -102,7 +102,7 @@ body {
     background-image: url('img/white_sand.png');
 }
 h1 {
-    font-size: 18px;
+    font-size: 20px;
     text-transform: uppercase;
 }
 h2 {
@@ -114,8 +114,6 @@ p {
 img {
     max-width: 100%;
     max-height: 100%;
-    border: 1px solid #d5d5d5;
-
 }
 .screen-reader-text {
     display: none;
@@ -135,8 +133,10 @@ img {
     padding: 3px 15px;
     color: #fff;
 }
-#secondary li a:hover {
+#secondary li a:hover,
+#secondary li a:active {
     background: none;
+    color: #ccc;
 }
 #secondary li a:first-of-type {
     padding-left: 0px;
@@ -163,6 +163,10 @@ img {
 }
 #primary-header {
     margin-bottom: 0px; 
+    border-width: 2px;
+    border-left: none;
+    border-right: none;
+    background-color: #f8f8f8;
 }
 #logo {
     font-size: 18px;
@@ -179,32 +183,38 @@ img {
 #main-content {
     background-image: url('img/white_sand.png');
     box-shadow: 0 0 10px #ccc;
-    padding: 0 0 13px 0px;
+    padding: 13px 0 13px 0px;
 }
 .content-banner {
     width:100%;
-    background-color: #758358;
+    background-color: #5c6c39;
     padding: 3px 0;
 }
 .breadcrumbs {
     color: #f5f5f5;
 }
-#main-content .breadcrumbs a {
+body .breadcrumbs a {
     color: #f5f5f5;
 }
 .home #main-content h1 {
     border-left:4px solid #5d5d5d;
-    background-color: #758358;
+    background-color: #5c6c39;
     line-height: 24px;
     padding-left: 2px;
     margin: 0 0 4px 0;
     color: #f5f5f5;
 }
 #main-content a {
+    color: #5c6c39;
+}
+.home #main-content a {
     color: #5d5d5d;
 }
 #branding {
     margin-top: 13px;
+}
+#branding img {
+    border: none;
 }
 #prayer {
     margin-top: 13px;
@@ -231,6 +241,9 @@ img {
 .masjidnow-container {
     padding: 0;
 }
+.masjidnow-theme-default .masjid-salah-row-alt {
+    background-color: #f8f8f8;
+}
 #banner {
     margin-top: 13px;
     padding:0px;    
@@ -238,7 +251,6 @@ img {
     background-color: #f8f8f8;
     height: 97px;
     overflow: hidden;
-    border: 2px solid #5d5d5d;
 }
 #banner h4 {
     padding: 0;
@@ -246,7 +258,7 @@ img {
     margin: 0px;
 }
 #banner a {
-    color: #758358;
+    color: #5c6c39;
 }
 #subscribe {
     margin-top: 0px;
@@ -255,7 +267,7 @@ img {
 }
 #subscribe .submit,
 .wpcf7-submit {
-    background-color: #758358;
+    background-color: #5c6c39;
     border: none;
     padding: 13px;
     margin: 0;
@@ -285,14 +297,14 @@ img {
     background-color: #fff;
     height: 450px;
     background-image: url('img/gplaypattern.png');
-
+    margin-bottom: 13px;
 }
 .twitter-feed {
-    padding: 6px 11px 11px 11px;
+    margin: 6px 11px 11px 11px;
 }
 #twitter article {
     max-height: 100px;
-    margin: 0 5px;
+    /*margin: 0 5px;*/
     border-bottom: 1px dashed #ccc;
     padding: 10px 0;
 }
@@ -302,13 +314,14 @@ img {
 #twitter article p {
     font-size: 14px;
     margin: 0;
+    padding-bottom: 10px;
 }
 #twitter article .more {
     float:right;
 }
 #carousel{
     margin-top: 13px;
-    height: 400px;
+    height: 398px;
     overflow: hidden;
     border: 13px solid #f8f8f8;
 }
@@ -321,6 +334,9 @@ img {
     width: 100%;
     text-align: center;
     top: 103px;
+}
+#carousel img {
+    border: none;
 }
 #events {
     margin-top: 13px;
@@ -361,6 +377,7 @@ img {
     height: auto;
     background-color: #fff;
     background-image: url('img/gplaypattern.png');
+    margin-bottom: 13px;
 }
 #recent article {
     height: 400px;
@@ -405,7 +422,7 @@ img {
     height: auto;
 }
 .blog article {
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 2px dashed #ccc;
 }
 .blog .more {
     float: right;
@@ -413,6 +430,21 @@ img {
 }
 .blog article:last-of-type {
     border-bottom: none;
+}
+.blog .sidebar ul {
+    list-style: none; 
+    padding-left: 10px;
+}
+.blog .sidebar ul li {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px;
+}
+.sidebar {
+    border-left: 2px dashed #ccc;
+    padding: 11px;
+}
+.sidebar #archive {
+    padding-bottom: 20px;
 }
 .blog .blog-post img + p,
 .page .blog-post img + p {
@@ -434,11 +466,37 @@ img {
 #eventlist {
     width: 100%;
 }
+#eventlist article {
+    margin-bottom: 15px;
+}
+#eventlist img {
+    float: left;
+    margin: 0 15px 15px 0;
+}
+#eventlist p {
+    float: none;
+}
+#eventlist .content {
+    background-color: #F5F5F5;
+    padding: 10px;
+}
+#eventlist .button {
+    background-color: #5c6c39;
+    border: none;
+    padding: 13px;
+    margin: 0;
+    color: #f5f5f5;
+    float:right;
+}
 .wpcf7-form-control-wrap input,
 .wpcf7-form-control-wrap textarea {
     width: 70%;
     border-radius: 5px;
     border: #ccc solid 1px;
+}
+.inbanner {
+    height:100px;
+    background-image: url('img/gplaypattern.png');
 }
 /* =Footer
 -------------------------------------------------------------- */
@@ -447,7 +505,7 @@ img {
     width: 100%;
 }
 #footer h1{
-    color: #758358;
+    color: #5c6c39;
     line-height: 24px;
 }
 #footer span {
@@ -456,12 +514,19 @@ img {
 #footer i {
     padding-right: 5px;
 }
+#footer .fa {
+    font-size: 24px;
+    float: left;
+}
 #footer a {
     color: #5d5d5d;
 }
+#footer a:hover,
+#footer h2 a:hover {
+    color: #ccc;
+}
 #footer .event-entry {
-    border-bottom-style:dotted;
-    border-bottom-width:1px;
+    border-bottom: 1px dashed #ccc;
     padding:5px 4px 0;
     float: left;
     width:100%;
@@ -494,7 +559,71 @@ img {
 }
 #footer-nav li a:hover {
     background: none;
+    color: #5d5d5d;
 }
 #footer-nav li:last-of-type a {
     padding-right: 0px;
+}
+/* =Responsive
+-------------------------------------------------------------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) { 
+    #carousel {
+        border: 3px solid #f8f8f8;
+        height: 320px;
+    }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
+    #branding img {
+        margin: 10px auto;
+        display: block;
+        float: none;
+    }
+    #carousel {
+        border: 5px solid #f8f8f8;
+        height: 250px;
+    }
+    #twitter {
+        height: 325px;
+    }
+    #recent article {
+        height: auto;
+    }
+    #events {
+        height: 240px;
+    }
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) { 
+    #secondary-header {
+        display: none;
+    }
+    #primary-header-nav {
+        width: 100%;
+        text-align: center;
+        border: none;
+    }
+    #primary-header-nav li a {
+        padding: 10px 0px;
+    }
+    #events {
+        height: 325px;
+    }
+    #carousel {
+        border: 3px solid #f8f8f8;
+        height: 100px;
+    }
+    #footer {
+        text-align: center;
+    }
+    #footer-nav {
+        float: none !important;
+        width: 100%;
+        text-align: center;
+
+    }
+    #footer-nav .nav > li {
+        float: left;
+    }
+    .carousel-indicators {
+        display: none;
+    }
 }

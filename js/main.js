@@ -3,8 +3,8 @@ jQuery(function($){
 	$(window).resize(function() {
 		var windowHeight = $(window).height();
 		var footerHeight = $(footer).outerHeight();
-		//$('body').css('margin-bottom',footerHeight);
-		//$('#main-content').css('min-height', windowHeight-footerHeight);
+		//$('#main-content').css('margin-bottom',footerHeight);
+		$('#main-content').css('min-height', windowHeight-footerHeight);
 	}).resize();
 
 	var bannerHeight = $('#banner').height();

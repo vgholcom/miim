@@ -14,11 +14,11 @@ get_header();?>
 				<div class="content-blogpost"><?php
 					echo get_the_post_thumbnail($id, 'full', array('class'=>'img-responsive'));
 					$excerpt = get_the_excerpt();
-					echo '<p>'.$excerpt.'... <a class="more" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title( get_the_ID() ).'">Read more <i class="fa fa-angle-double-right"></i></a></p>'; ?>
+					echo '<p>'.$excerpt.'... <a class="more" href="'.get_permalink( get_the_ID() ).'" title="'.get_the_title( get_the_ID() ).'">READ MORE <i class="fa fa-angle-double-right"></i></a></p>'; ?>
 				</div>
 				<p class="muted">
 					<small><?php
-						echo get_the_tag_list( 'Tags: ', ', ', ' | ' ); ?>
+						echo get_the_tag_list( 'Tags: ', ', ' ); ?>
 					</small>
 				</p>
 			</article><?php 
@@ -31,7 +31,9 @@ get_header();?>
 		?>
 	</div>
 	<div class="col-md-4">
-		<?php if ( dynamic_sidebar('archive') ) : else : endif; ?>
+		<div class="sidebar">
+			<?php if ( dynamic_sidebar('archive') ) : else : endif; ?>
+		</div>
 	</div>
 </div>
 <?php
