@@ -38,24 +38,24 @@ add_action('admin_enqueue_scripts','miim_admin_init');
 
 function miim_init() {
 
-	// Register Embed Custom Post Type
+	// Register video Custom Post Type
 	$labels = array(
-		'name'                => _x( 'Embeds' ),
-		'singular_name'       => _x( 'Embed' ),
-		'menu_name'           => __( 'Embeds' ),
-		'all_items'           => __( 'All Embeds' ),
-		'view_item'           => __( 'View Embed' ),
-		'add_new_item'        => __( 'Add New Embed' ),
+		'name'                => _x( 'Videos' ),
+		'singular_name'       => _x( 'Video' ),
+		'menu_name'           => __( 'Videos' ),
+		'all_items'           => __( 'All videos' ),
+		'view_item'           => __( 'View video' ),
+		'add_new_item'        => __( 'Add New video' ),
 		'add_new'             => __( 'Add New' ),
-		'edit_item'           => __( 'Edit Embed' ),
-		'update_item'         => __( 'Update Embed' ),
-		'search_items'        => __( 'Search Embeds' ),
-		'not_found'           => __( 'Embed Not found' ),
-		'not_found_in_trash'  => __( 'Embed Not found in Trash' ),
+		'edit_item'           => __( 'Edit video' ),
+		'update_item'         => __( 'Update video' ),
+		'search_items'        => __( 'Search videos' ),
+		'not_found'           => __( 'video Not found' ),
+		'not_found_in_trash'  => __( 'video Not found in Trash' ),
 	);
 	$args = array(
-		'label'               => __( 'embed' ),
-		'description'         => __( 'Embeds' ),
+		'label'               => __( 'video' ),
+		'description'         => __( 'videos' ),
 		'labels'              => $labels,
 		'supports'            => array( 'title', 'thumbnail', 'editor','excerpt' ),
 		'taxonomies'          => array( 'category', 'post_tag', 'gallery' ),
@@ -73,7 +73,7 @@ function miim_init() {
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
 	);
-	register_post_type( 'embed', $args );
+	register_post_type( 'video', $args );
 
 	// Register Custom Taxonomy
 	$labels = array(
@@ -100,11 +100,11 @@ function miim_init() {
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
 	);
-	register_taxonomy( 'gallery', array( 'post', ' embed', ' attachment', ' page' ), $args );
+	register_taxonomy( 'gallery', array( 'post', ' video', ' attachment', ' page' ), $args );
 	register_taxonomy_for_object_type('gallery', 'attachment');
 	register_taxonomy_for_object_type('gallery', 'post');
 	register_taxonomy_for_object_type('gallery', 'page');
-	register_taxonomy_for_object_type('gallery', 'embed');
+	register_taxonomy_for_object_type('gallery', 'video');
 
 }
 
@@ -346,7 +346,7 @@ function miim_metabox() {
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'page', 'normal', 'high' );
 	add_meta_box( 'miim-gallery-metabox', 'Attached Gallery', 'miim_gallery_metabox', 'post', 'normal', 'high' );
 	add_meta_box( 'miim-events-metabox', 'Events', 'miim_events_metabox', 'event');
-	add_meta_box( 'miim-embed-metabox', 'Embed Code', 'miim_embed_metabox', 'embed');
+	add_meta_box( 'miim-video-metabox', 'Video Code', 'miim_video_metabox', 'video');
 	add_meta_box('miim-page-post-category-meta', 'Post Category', 'miim_page_post_category_meta', 'page', 'normal', 'high');
 }
 add_action( 'add_meta_boxes', 'miim_metabox' );
@@ -377,15 +377,15 @@ function miim_gallery_metabox ( $post ) { ?>
 	</script>
 <?php }
 
-/* Embed Code Meta Box */
-function miim_embed_metabox($post) {?>
+/* video Code Meta Box */
+function miim_video_metabox($post) {?>
 	<div style="border:1px solid #CCCCCC;padding:10px;margin-bottom:10px;"><?php
 		$values = get_post_custom( $post->ID );
-		$selected = isset( $values['film_embed'] ) ? $values['film_embed'][0] : '';
+		$selected = isset( $values['film_video'] ) ? $values['film_video'][0] : '';
 		wp_nonce_field( 'my_meta_box_nonce', 'meta_box_nonce' );?>
 		<p>
-		  <label for="film_embed"><p>Paste embed code for the film in the textbox below.</p></label>
-		  <textarea name="film_embed" id="film_embed" cols="62" rows="5" ><?php echo $selected; ?></textarea>
+		  <label for="film_video"><p>Paste video code for the film in the textbox below.</p></label>
+		  <textarea name="film_video" id="film_video" cols="62" rows="5" ><?php echo $selected; ?></textarea>
 		</p>
 	</div><?php   
 } 
@@ -430,8 +430,8 @@ function metabox_save( $post_id ) {
 			'href' => array() 
 		)
 	);
-	if( isset( $_POST['film_embed'] ) ) {
-		update_post_meta( $post_id, 'film_embed', $_POST['film_embed'] );
+	if( isset( $_POST['film_video'] ) ) {
+		update_post_meta( $post_id, 'film_video', $_POST['film_video'] );
 	}
 	if( isset($_POST['miim_gallery']) ) {
 		update_post_meta( $post_id, 'miim_gallery', $_POST['miim_gallery'] );

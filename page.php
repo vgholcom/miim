@@ -3,6 +3,9 @@
  * Page Template
  */
 get_header();
+$id = $post->ID;
+$attachedGal = get_post_meta($id, 'miim_gallery', true);
+$post_category = get_post_meta($id, 'miim_post_category', true);
 
 if ( have_posts() ) : while ( have_posts() ) : the_post();?>
 	<div class="row">
@@ -15,7 +18,6 @@ endwhile; else: ?>
 	<p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php 
 endif;
 
-$post_category = get_post_meta($post->ID, 'miim_post_category', true);
 //check for post category
 if ( (isset($post_category) && $post_category!=null && $post_category!=-1) ) :
 	$wp_query = new WP_Query( 'cat='.$post_category );
@@ -33,8 +35,7 @@ if ( (isset($post_category) && $post_category!=null && $post_category!=-1) ) :
 	</div><?php
 	wp_reset_postdata();
 endif;
-$attachedGal = get_post_meta($post->ID, 'miim_gallery', true);
-if (isset($attachedGal)&&$attachedGal!='') :
+if (isset($attachedGal)&&$attachedGal!=''&&$attachedGal!=-1) :
 	$items = new WP_query(array(
 		'post_type' => 'any',
 		'post_status' => 'any',

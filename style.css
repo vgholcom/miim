@@ -156,7 +156,7 @@ img {
     border: #ccc solid 1px;
     margin: 4px 0;
     padding: 2px;
-    background-color: #fff;
+    background-color: #f8f8f8;
     border-radius: 5px;
     width: 150px;
     display: inline-block;
@@ -235,7 +235,7 @@ img {
     margin-top: 13px;
     padding:0px;    
     width:100%;
-    background-color: #fff;
+    background-color: #f8f8f8;
     height: 97px;
     overflow: hidden;
     border: 2px solid #5d5d5d;
@@ -249,7 +249,7 @@ img {
     color: #758358;
 }
 #subscribe {
-    margin-top: 13px;
+    margin-top: 0px;
     padding:0px; 
     background-color: #fff;  
 }
@@ -269,6 +269,7 @@ img {
     border: none;
     padding: 13px; 
     margin: 0;
+    background-color: #f8f8f8;
 }
 #emailSub-widget {
     padding: 0;
@@ -283,6 +284,8 @@ img {
     padding:0px;
     background-color: #fff;
     height: 450px;
+    background-image: url('img/gplaypattern.png');
+
 }
 .twitter-feed {
     padding: 6px 11px 11px 11px;
@@ -307,7 +310,7 @@ img {
     margin-top: 13px;
     height: 400px;
     overflow: hidden;
-    border: 13px solid #fff;
+    border: 13px solid #f8f8f8;
 }
 #carousel .fa-play-circle-o {
     color:#FFFFFF;
@@ -325,6 +328,8 @@ img {
     height:310px; 
     background-color: #fff;
     overflow: hidden;
+    background-image: url('img/gplaypattern.png');
+
 }
 #events article {
     padding: 11px 6px 11px 11px;
@@ -355,6 +360,7 @@ img {
     padding:0px;
     height: auto;
     background-color: #fff;
+    background-image: url('img/gplaypattern.png');
 }
 #recent article {
     height: 400px;
@@ -378,7 +384,7 @@ img {
 -------------------------------------------------------------- */
 .blog h1,
 .page h1,
-.single-embed h1,
+.single-video h1,
 .archive h1 {
     line-height: 24px;
     margin: 15px 0;
@@ -412,17 +418,18 @@ img {
 .page .blog-post img + p {
   display:inline;
 }
-.single-embed section {
+.single-video section {
     width:100%;
-    background-color: #fff;
 }
-.single-embed iframe {
-    border: 4px solid #fff;
+.single-video iframe {
+    border: 4px solid #f5f5f5;
     max-width: 100%;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 11px 0;
+}
+.single-video p {
+    margin-top: 15px;
 }
 #eventlist {
     width: 100%;
@@ -430,6 +437,8 @@ img {
 .wpcf7-form-control-wrap input,
 .wpcf7-form-control-wrap textarea {
     width: 70%;
+    border-radius: 5px;
+    border: #ccc solid 1px;
 }
 /* =Footer
 -------------------------------------------------------------- */
