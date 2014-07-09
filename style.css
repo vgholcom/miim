@@ -98,7 +98,6 @@ a img.aligncenter {
 -------------------------------------------------------------- */
 body {
     font-family: MuseoSans-500;
-    background-color: #F5F5F5;
     background-image: url('img/white_sand.png');
 }
 h1 {
@@ -181,7 +180,6 @@ img {
 /* =Front Page
 -------------------------------------------------------------- */
 #main-content {
-    background-image: url('img/white_sand.png');
     box-shadow: 0 0 10px #ccc;
     padding: 13px 0 13px 0px;
 }
