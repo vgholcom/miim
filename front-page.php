@@ -95,7 +95,8 @@ $option = get_option('miim_theme_options'); ?>
 					$image_id = get_post_thumbnail_id(get_the_ID());?>
 					<div class="item <?php if($first){ echo 'active'; $first=false; } ?>"><?php
 						$thumb = wp_get_attachment_image_src( $image_id, 'full' );
-						$image = str_replace(site_url().'/', ABSPATH, $thumb['0']); 
+						$image = $thumb['0'];
+						//$image = str_replace(site_url().'/', ABSPATH, $thumb['0']); 
 						if (get_post_type() == 'video') { ?>
 							<a href="<?php the_permalink(); ?>"><i class="fa fa-play-circle-o"></i></a><?php
 						} ?>

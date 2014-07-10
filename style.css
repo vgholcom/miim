@@ -405,35 +405,43 @@ body .breadcrumbs a {
     margin: 15px 0;
 }
 .blog article,
+.archive article,
 .page article {
     display: block;
     padding-bottom: 10px;
 }
 .blog img,
+.archive img,
 .page img {
     border: 1px solid #5d5d5d;
     float: left;
     margin: 0 10px 10px 0;
 }
-.blog img {
+.blog img,
+.archive img {
     width:100%;
     height: auto;
 }
-.blog article {
+.blog article,
+.archive article {
     border-bottom: 2px dashed #ccc;
 }
-.blog .more {
+.blog .more,
+.archive .more {
     float: right;
     text-transform: uppercase;
 }
-.blog article:last-of-type {
+.blog article:last-of-type,
+.archive article:last-of-type {
     border-bottom: none;
 }
-.blog .sidebar ul {
+.blog .sidebar ul,
+.archive .sidebar ul {
     list-style: none; 
     padding-left: 10px;
 }
-.blog .sidebar ul li {
+.blog .sidebar ul li,
+.archive .sidebar ul li {
     border-bottom: 1px dashed #ccc;
     padding: 5px;
 }
@@ -445,6 +453,7 @@ body .breadcrumbs a {
     padding-bottom: 20px;
 }
 .blog .blog-post img + p,
+.archive .blog-post img + p,
 .page .blog-post img + p {
   display:inline;
 }
