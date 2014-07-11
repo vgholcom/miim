@@ -124,7 +124,7 @@ img {
 #secondary-header{
     font-size: 12px;
     margin: 0px;
-    height: 30px;
+    height: 31px;
     min-height: 30px;
     background-color: #5d5d5d;
 }
@@ -139,6 +139,9 @@ img {
 }
 #secondary li a:first-of-type {
     padding-left: 0px;
+}
+#secondary article {
+    padding-bottom: 0px;
 }
 .fa-search {
     color: #5d5d5d;
@@ -605,6 +608,9 @@ body .breadcrumbs a {
     }
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { 
+    #branding {
+        height: auto;
+    }
     #branding img {
         margin: 10px auto;
         display: block;
@@ -622,6 +628,22 @@ body .breadcrumbs a {
     }
     #events {
         height: 240px;
+    }
+}
+@media only screen and (max-device-width : 767px) { 
+   #primary-header-nav {
+        width: 100%;
+        text-align: center;
+        border: none;
+    } 
+    .navbar-nav { 
+        margin: 0;
+    }
+    #secondary-header .nav > li {
+        float: left;
+    }
+    #primary-header-nav li:last-of-type a {
+        padding-right: 15px;
     }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) { 
