@@ -99,8 +99,9 @@ $option = get_option('miim_theme_options'); ?>
 						//$image = str_replace(site_url().'/', ABSPATH, $thumb['0']); 
 						if (get_post_type() == 'video') { ?>
 							<a href="<?php the_permalink(); ?>"><i class="fa fa-play-circle-o"></i></a><?php
-						} ?>
-						<img src="<?php echo get_template_directory_uri() ?>/admin/timthumb.php?src=<?php echo $image; ?>&amp;w=1125&amp;h=376&amp;q=100&amp;a=c&amp;zc=1" alt="<?php echo get_the_title(get_the_ID()); ?>">
+						} 
+						//echo get_template_directory_uri() ?><!--/admin/timthumb.php?src=<?php echo $image; ?>&amp;w=1125&amp;h=376&amp;q=100&amp;a=c&amp;zc=1-->?>
+						<img src="<?php echo $image; ?>" alt="<?php echo get_the_title(get_the_ID()); ?>">
 					</div><?php
 				endwhile;
 				wp_reset_postdata(); ?>
