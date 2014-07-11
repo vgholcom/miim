@@ -10,6 +10,10 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
+.slide {
+    background-color: #fff;
+    padding-bottom: 13px;
+}
 
 /* =WordPress Core
 -------------------------------------------------------------- */
@@ -98,7 +102,7 @@ a img.aligncenter {
 -------------------------------------------------------------- */
 body {
     font-family: MuseoSans-500;
-    background-image: url('img/white_sand.png');
+    background-image:url('img/debut-grey.png');
 }
 h1 {
     font-size: 20px;
@@ -126,11 +130,19 @@ img {
     margin: 0px;
     height: 31px;
     min-height: 30px;
-    background-color: #5d5d5d;
+    background-color: #fff;
 }
 #secondary li a {
     padding: 3px 15px;
-    color: #fff;
+    color: #000033;
+}
+#secondary .fa{
+    font-size: 24px;
+    float: left;
+}
+#secondary i {
+    padding-right: 5px;
+    padding-top: 3px;
 }
 #secondary li a:hover,
 #secondary li a:active {
@@ -142,6 +154,21 @@ img {
 }
 #secondary article {
     padding-bottom: 0px;
+}
+.fa-twitter-square {
+    color: #9ae4e8;
+}
+.fa-facebook-square {
+    color: #3b5998;
+}
+.fa-instagram {
+    color: #3f729b
+}
+.fa-youtube-square {
+    color:#e52d27;
+}
+.fa-flickr {
+    color:#ff0084;
 }
 .fa-search {
     color: #5d5d5d;
@@ -168,17 +195,20 @@ img {
     border-width: 2px;
     border-left: none;
     border-right: none;
-    background-color: #f8f8f8;
+    background-color: #000033;
+}
+#primary-header a {
+    color: #fff;
 }
 #logo {
     font-size: 18px;
     padding: 12px 0;
 }
 #logo a {
-    color: #5d5d5d;
+    color: #fff;
 }
 #logo a:hover {
-    color: #333;
+    color: #ccc;
     text-decoration: none;
 }
 #primary-header-nav li:last-of-type a {
@@ -192,7 +222,7 @@ img {
 }
 .content-banner {
     width:100%;
-    background-color: #5c6c39;
+    background-color: #ccc;
     padding: 3px 0;
 }
 .breadcrumbs {
@@ -202,8 +232,7 @@ body .breadcrumbs a {
     color: #f5f5f5;
 }
 .home #main-content h1 {
-    border-left:4px solid #5d5d5d;
-    background-color: #5c6c39;
+    background-color: #000033;
     line-height: 24px;
     padding-left: 2px;
     margin: 0 0 4px 0;
@@ -284,7 +313,7 @@ body .breadcrumbs a {
 }
 #subscribe .submit,
 .wpcf7-submit {
-    background-color: #5c6c39;
+    background-color: #000033;
     border: none;
     padding: 13px;
     margin: 0;
@@ -340,7 +369,7 @@ body .breadcrumbs a {
     margin-top: 13px;
     height: 398px;
     overflow: hidden;
-    border: 13px solid #f8f8f8;
+    border: none;
 }
 #carousel .fa-play-circle-o {
     color:#FFFFFF;
@@ -536,9 +565,11 @@ body .breadcrumbs a {
 #footer {
     padding: 20px 0;
     width: 100%;
+    background-color: #000033;
+    color: #f5f5f5;
 }
 #footer h1{
-    color: #5c6c39;
+    color: #fff;
     line-height: 24px;
 }
 #footer span {
@@ -552,7 +583,7 @@ body .breadcrumbs a {
     float: left;
 }
 #footer a {
-    color: #5d5d5d;
+    color: #f5f5f5;
 }
 #footer a:hover,
 #footer h2 a:hover {
@@ -568,7 +599,7 @@ body .breadcrumbs a {
     border-bottom: none;
 }
 #footer .event-entry a {
-    color: #5d5d5d;
+    color: #f5f5f5;
 }
 #footer .event-entry span {
     display: block; 
@@ -583,7 +614,7 @@ body .breadcrumbs a {
 }
 #secondary-footer {
     padding: 13px 0;
-    background-color: #ccc;
+    background-color: #fff;
 }
 #secondary-footer a {
     color: #5d5d5d; 
@@ -595,7 +626,7 @@ body .breadcrumbs a {
 #footer-nav li a {
     padding: 0px 5px;
     font-size: 12px;
-    color: #fff;
+    color: #000003;
 }
 #footer-nav li a:hover {
     background: none;
