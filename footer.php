@@ -69,7 +69,8 @@ $option = get_option('miim_theme_options'); ?>
 			<div class="row">
 				<div class="col-md-6 col-sm-6 col-xs-12">
 					<div id="copy">
-						<?php echo $option['miim_copyright']; ?>
+						Development by <a href="mailto:vholcomb@live.com">Victoria Holcomb.</a>
+						<?php echo ' '. $option['miim_copyright']; ?>
 					</div>
 				</div>
 				<div class="col-md-6 col-sm-6 col-xs-12">
