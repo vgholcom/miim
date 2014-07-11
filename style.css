@@ -440,8 +440,7 @@ body .breadcrumbs a {
     float: left;
     margin: 0 10px 10px 0;
 }
-.blog img,
-.archive img {
+.blog img {
     width:100%;
     height: auto;
 }
