@@ -335,6 +335,8 @@ body .breadcrumbs a {
 }
 #carousel img {
     border: none;
+    max-width: auto;
+    max-height: auto;
 }
 #events {
     margin-top: 13px;
