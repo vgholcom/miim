@@ -491,6 +491,11 @@ body .breadcrumbs a {
 .single-video p {
     margin-top: 15px;
 }
+.single-events img {
+    float:right;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
 #eventlist {
     width: 100%;
 }
