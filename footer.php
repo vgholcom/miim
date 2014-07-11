@@ -22,8 +22,8 @@ $option = get_option('miim_theme_options'); ?>
 					<span><?php if (isset($option['tw_username'])) { ?><a href="http://www.twitter.com/<?php echo $option['tw_username']; ?>"><i class="fa fa-twitter-square"></i><?php /*echo $option['tw_username'];*/ }?></a></span>
 					<span><?php if (isset($option['fb_username'])) { ?><a href="http://www.facebook.com/<?php echo $option['fb_username']; ?>"><i class="fa fa-facebook-square"></i><?php /*echo $option['fb_username'];*/ }?></a></span>
 					<span><?php if (isset($option['ig_username'])) { ?><a href="http://www.instagram.com/<?php echo $option['ig_username']; ?>"><i class="fa fa-instagram"></i><?php /*echo $option['ig_username'];*/ }?></a></span>
-					<span><?php if (isset($option['yt_username'])) { ?><a href="http://www.youtube.com/<?php echo $option['yt_username']; ?>"><i class="fa fa-youtube-square"></i><?php /*echo $option['yt_username'];*/ }?></a></span>
-					<span><?php if (isset($option['fk_username'])) { ?><a href="http://www.flickr.com/<?php echo $option['fk_username']; ?>"><i class="fa fa-flickr"></i><?php /*echo $option['fk_username'];*/ }?></a></span>
+					<span><?php if (isset($option['yt_username'])) { ?><a href="http://www.youtube.com/channel/<?php echo $option['yt_username']; ?>"><i class="fa fa-youtube-square"></i><?php /*echo $option['yt_username'];*/ }?></a></span>
+					<span><?php if (isset($option['fk_username'])) { ?><a href="http://www.flickr.com/photos/<?php echo $option['fk_username']; ?>"><i class="fa fa-flickr"></i><?php /*echo $option['fk_username'];*/ }?></a></span>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<section id="events-footer">
