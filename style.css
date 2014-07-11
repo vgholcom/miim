@@ -444,8 +444,7 @@ body .breadcrumbs a {
     width:100%;
     height: auto;
 }
-.blog article,
-.archive article {
+.blog article {
     border-bottom: 2px dashed #ccc;
 }
 .blog .more,

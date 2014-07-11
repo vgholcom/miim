@@ -16,7 +16,7 @@ get_header(); ?>
 				while ( $events->have_posts() ) : $events->the_post(); ?>
 					<article class="col-md-6 col-sm-12"><?php 
 						$id = get_the_ID();
-						    echo get_the_post_thumbnail($id, 'medium', array('class'=>'img-responsive'));?>
+						echo get_the_post_thumbnail($id, 'medium', array('class'=>'img-responsive'));?>
 
 						<div class="content">
 							<h2><?php the_title(); ?></h2>
