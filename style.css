@@ -704,8 +704,7 @@ body .breadcrumbs a {
         float: none;
     }
     #carousel {
-        border: 5px solid #f8f8f8;
-        height: 250px;
+        height: 350px;
     }
     #twitter {
         height: 325px;
@@ -750,6 +749,9 @@ body .breadcrumbs a {
     }
     .navbar-collapse {
         box-shadow: none;
+    }
+    li.menu-item:hover ul.sub-menu {
+        display: none;
     }
     #events {
         height: 325px;
