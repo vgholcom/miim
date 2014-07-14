@@ -10,10 +10,6 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 */
-.slide {
-    background-color: #fff;
-    padding-bottom: 13px;
-}
 
 /* =WordPress Core
 -------------------------------------------------------------- */
@@ -118,6 +114,9 @@ img {
     max-width: 100%;
     max-height: 100%;
 }
+a:hover { 
+    text-decoration: none;
+}
 .screen-reader-text {
     display: none;
 }
@@ -126,7 +125,7 @@ img {
 /* = Header 
 -------------------------------------------------------------- */
 #secondary-header{
-    font-size: 12px;
+    font-size: 14px;
     margin: 0px;
     height: 31px;
     min-height: 30px;
@@ -200,6 +199,9 @@ img {
 #primary-header a {
     color: #fff;
 }
+#primary-header a:hover {
+    color: #ccc;
+}
 #logo {
     font-size: 18px;
     padding: 12px 0;
@@ -213,6 +215,31 @@ img {
 }
 #primary-header-nav li:last-of-type a {
     padding-right: 0px;
+}
+li.menu-item:hover ul.sub-menu {
+    display: block;
+}
+ul.nav ul.sub-menu {
+    display: none;
+    background-color: #fff;
+    box-shadow: 1px 1px 10px #aaa;
+    -ms-box-shadow: 1px 1px 10px #aaa; /*IE*/
+    -webkit-box-shadow: 1px 1px 10px #aaa; /*Safari+Chrome*/
+    -moz-box-shadow: 1px 1px 10px #aaa; /*Firefox*/
+    -o-box-shadow: 1px 1px 10px #aaa; /*Opera*/
+    padding: 20px;
+    height: auto;
+    position: absolute;
+    list-style: none;
+    width: 200px;
+}
+#primary-header .sub-menu a {
+    color: #000033;
+    line-height: 30px;
+}
+#primary-header .sub-menu a:hover {
+    color: #ccc;
+    text-decoration: none;
 }
 /* =Front Page
 -------------------------------------------------------------- */
@@ -238,8 +265,11 @@ body .breadcrumbs a {
     margin: 0 0 4px 0;
     color: #f5f5f5;
 }
+.home #main-content {
+    padding-top: 0px;
+}
 #main-content a {
-    color: #5c6c39;
+    color: #000033;
 }
 .home #main-content a {
     color: #5d5d5d;
@@ -304,7 +334,7 @@ body .breadcrumbs a {
     margin: 0px;
 }
 #banner a {
-    color: #5c6c39;
+    color: #000033;
 }
 #subscribe {
     margin-top: 0px;
@@ -318,6 +348,11 @@ body .breadcrumbs a {
     padding: 13px;
     margin: 0;
     color: #f5f5f5;
+}
+#subscribe .submit:hover,
+.wpcf7-submit:hover {
+    background-color: #ccc;
+    color: #000033;
 }
 .wpcf7-submit {
     float: left;
@@ -365,9 +400,15 @@ body .breadcrumbs a {
 #twitter article .more {
     float:right;
 }
+#twitter a:hover {
+    color: #000033;
+}
+.slide {
+    background-color: #fff;
+    padding-bottom: 13px;
+}
 #carousel{
-    margin-top: 13px;
-    height: 398px;
+    height: 598px;
     overflow: hidden;
     border: none;
 }
@@ -421,6 +462,9 @@ body .breadcrumbs a {
     position: absolute;
     right: 25px;
 }
+#events a:hover {
+    color: #000033;
+}
 #recent {
     margin-top: 13px;
     padding:0px;
@@ -438,6 +482,9 @@ body .breadcrumbs a {
 }
 #recent a {
     color: #5D5D5D;
+}
+#recent a:hover {
+    color: #000033;
 }
 #recent .posts {
     padding: 11px;
@@ -543,7 +590,7 @@ body .breadcrumbs a {
     padding: 10px;
 }
 #eventlist .button {
-    background-color: #5c6c39;
+    background-color: #000033;
     border: none;
     padding: 13px;
     margin: 0;
@@ -679,27 +726,37 @@ body .breadcrumbs a {
         float: left;
     }
     #primary-header-nav li:last-of-type a {
-        padding-right: 15px;
+        padding-right: 0px;
     }
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 568px) { 
     #secondary-header {
         display: none;
     }
+    #branding {
+        height: auto;
+    }
     #primary-header-nav {
         width: 100%;
-        text-align: center;
+        text-align: left;
         border: none;
     }
     #primary-header-nav li a {
         padding: 10px 0px;
     }
+    .navbar-collapse {
+        box-shadow: none;
+    }
     #events {
         height: 325px;
     }
     #carousel {
-        border: 3px solid #f8f8f8;
-        height: 100px;
+        border: 0px;
+        height: 230px;
+    }
+    .slide {
+        padding: 0px;
+        border-bottom: 3px solid #fff;
     }
     #footer {
         text-align: center;

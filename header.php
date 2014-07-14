@@ -46,7 +46,7 @@
 			<div id="secondary-before" class="pull-right"></div>
 		</div>
 	</header>
-	<header id="primary-header" class="navbar navbar-default navbar-static-top">
+	<header id="primary-header" class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<article id="logo" class="pull-left">
 				<a href="<?php bloginfo('url'); ?>"><?php bloginfo('name');?></a>
@@ -64,7 +64,7 @@
 					'menu_class'=>'nav navbar-nav',
 					'menu_id'=>'sub-head-menu',
 					'fallback_cb'=>false,
-					'depth'=>1
+					'depth'=>2
 				)); ?>
 			</nav>
 		</div>
