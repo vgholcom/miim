@@ -276,7 +276,7 @@ body .breadcrumbs a {
 }
 #branding {
     margin-top: 13px;
-    height: 251px;
+    height: 261px;
 }
 #branding img {
     border: none;
@@ -288,6 +288,9 @@ body .breadcrumbs a {
     background-color: #fff;
     height: 197px;
     font-size: 16px;
+}
+#prayer table {
+    width: 100%;
 }
 #prayer td {
     padding: 3px 11px;

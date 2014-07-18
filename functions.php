@@ -7,6 +7,7 @@
 //include 'api/instagram.php';
 include 'api/twitter.php';
 include 'admin/events.php';
+include 'admin/prayer.php';
 
 
 function miim_scripts_styles() {

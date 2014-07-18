@@ -75,7 +75,56 @@ $option = get_option('miim_theme_options'); ?>
 				<div class="col-md-4 col-sm-12">
 					<div class="row">
 						<div class="col-md-12 col-sm-12">
-							<?php if ( dynamic_sidebar('prayer_calendar') ) : else : endif; ?>
+							<div id="prayer"><?php
+								$latitude = 43;
+								$longitude = -80;
+								$timeZone = -4; 
+								$prayTime = new PrayTime(2);
+								$date = time();
+								$times = $prayTime->getPrayerTimes($date, $latitude, $longitude, $timeZone);
+								//var_dump($times); ?>
+								<h1>Prayer Times</h1>
+								<table>
+									<tbody>
+										<tr class="tr-odd">
+											<td>Fajr</td>
+											<td style="text-align: right"><?php
+												echo $times[0]; ?>
+											</td>
+										</tr>
+										<tr class="tr-even">
+											<td>Sunrise</td>
+											<td style="text-align: right"><?php
+												echo $times[1]; ?>
+											</td>
+										</tr>
+										<tr class="tr-odd">
+											<td>Zuhr</td>
+											<td style="text-align: right"><?php
+												echo $times[2]; ?>
+											</td>
+										</tr>
+										<tr class="tr-even">
+											<td>Asr</td>
+											<td style="text-align: right"><?php
+												echo $times[3]; ?>
+											</td>
+										</tr>
+										<tr class="tr-odd">
+											<td>Maghrib</td>
+											<td style="text-align: right"><?php
+												echo $times[4]; ?>
+											</td>
+										</tr>
+										<tr class="tr-even">
+											<td>Isha</td>
+											<td style="text-align: right"><?php
+												echo $times[6]; ?>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 					<div class="row">
