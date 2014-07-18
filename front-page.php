@@ -5,12 +5,6 @@
 get_header();
 $option = get_option('miim_theme_options'); ?>
 
-<div class="row">
-	<div class="col-md-12">
-		<section class="green">
-		</section>
-	</div>
-</div>
 </div>
 <div class="slide">
 			<section id="carousel" class="carousel slide" data-ride="carousel"><?php

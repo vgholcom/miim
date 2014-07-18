@@ -52,7 +52,7 @@ $option = get_option('miim_theme_options'); ?>
 				<div class="col-md-3 col-sm-6 col-xs-12">
 					<div class="row">
 						<div class="col-md-12">
-							<h1>Donate Now</h1>
+							<h1><a href="http://www.masjidisa.com/?page_id=245" alt="donate">Donate Now</a></h1>
 							<p>Click <a href="http://www.masjidisa.com/?page_id=245" alt="donate">here</a> to donate to our organization.</p>
 						</div>
 					</div>
