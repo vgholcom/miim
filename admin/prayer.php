@@ -124,7 +124,7 @@ class PrayTime
     var $calcMethod   = 2;        // caculation method
     var $asrJuristic  = 0;        // Juristic method for Asr
     var $dhuhrMinutes = 0;        // minutes after mid-day for Dhuhr
-    var $adjustHighLats = 0;    // adjusting method for higher latitudes
+    var $adjustHighLats = 1;    // adjusting method for higher latitudes
 
     var $timeFormat   = 2;        // time format
 
